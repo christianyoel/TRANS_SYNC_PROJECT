@@ -1,0 +1,12 @@
+### Registrar un nuevo Despachador (Counter)
+POST http://localhost:8081/api/usuarios
+Content-Type: application/json
+
+{
+  "nombres": "María Elena",
+  "apellidos": "Condori",
+  "documentoIdentidad": "76543210",
+  "email": "maria.condori@transveloz.com",
+  "password": "password123",
+  "rol": "COUNTER"
+}
