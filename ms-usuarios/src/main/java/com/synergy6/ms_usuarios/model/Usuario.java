@@ -2,6 +2,7 @@ package com.synergy6.ms_usuarios.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 
 @Data
@@ -28,8 +29,9 @@ public class Usuario {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private String rol; // ADMIN, COUNTER, CONDUCTOR
+    private Rol rol;
 
     @Column(name = "fecha_creacion", updatable = false)
     private LocalDateTime fechaCreacion = LocalDateTime.now();

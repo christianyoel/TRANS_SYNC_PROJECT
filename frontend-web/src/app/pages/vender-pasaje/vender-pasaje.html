@@ -1,0 +1,110 @@
+<div class="container">
+<div class="page-header mb-4">
+  <h2 class="fw-bold text-primary mb-1">🛒 Vender Pasaje</h2>
+  <p class="text-muted mb-0">Módulo counter — selecciona viaje, asiento y datos del pasajero</p>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-7">
+    <div class="card shadow border-0">
+      <div class="card-body p-4">
+        @if (cargandoViajes) {
+          <div class="text-center py-4">
+            <div class="spinner-border text-primary"></div>
+          </div>
+        } @else {
+          <div class="mb-4">
+            <label class="form-label fw-bold">Seleccionar Viaje</label>
+            <select class="form-select form-select-lg" [(ngModel)]="viajeSeleccionado" (ngModelChange)="onViajeChange()">
+              <option value="">-- Elige un viaje activo --</option>
+              @for (v of viajes; track v.id) {
+                <option [value]="v.numeroViaje">{{ v.numeroViaje }} · {{ v.origen }} → {{ v.destino }} · S/ {{ v.precio | number: '1.2-2' }}</option>
+              }
+            </select>
+          </div>
+
+          @if (viajeActual) {
+            <div class="alert alert-light border mb-4">
+              <strong>{{ viajeActual.origen }} → {{ viajeActual.destino }}</strong><br />
+              <small class="text-muted">Capacidad: {{ viajeActual.capacidad }} asientos · Precio: S/ {{ viajeActual.precio | number: '1.2-2' }}</small>
+            </div>
+          }
+
+          @if (cargandoAsientos) {
+            <div class="text-center py-3">
+              <div class="spinner-border spinner-border-sm text-primary"></div>
+              <span class="ms-2 text-muted">Cargando asientos...</span>
+            </div>
+          }
+
+          @if (asientosInfo) {
+            <label class="form-label fw-bold mb-3">Mapa de Asientos (Minivan)</label>
+            <div class="seat-grid mb-4">
+              @for (n of asientosInfo.disponibles; track n) {
+                <button
+                  type="button"
+                  class="seat-btn available"
+                  [class.selected]="asientoSeleccionado === n"
+                  (click)="seleccionarAsiento(n)"
+                >
+                  {{ n }}
+                </button>
+              }
+              @for (n of asientosInfo.ocupados; track n) {
+                <button type="button" class="seat-btn occupied" disabled>{{ n }}</button>
+              }
+            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">DNI Pasajero</label>
+                <input class="form-control" [(ngModel)]="documentoPasajero" placeholder="72000000" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Nombre Completo</label>
+                <input class="form-control" [(ngModel)]="nombrePasajero" placeholder="Juan Perez" />
+              </div>
+            </div>
+
+            @if (mensajeError) {
+              <div class="alert alert-danger mt-3">{{ mensajeError }}</div>
+            }
+            @if (mensajeExito) {
+              <div class="alert alert-success mt-3">{{ mensajeExito }}</div>
+            }
+
+            <button class="btn btn-success btn-lg w-100 mt-4" (click)="vender()" [disabled]="vendiendo || !asientoSeleccionado">
+              @if (vendiendo) {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+              }
+              Confirmar Venta
+            </button>
+          }
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    @if (ultimoPasaje) {
+      <div class="card border-success shadow-sm">
+        <div class="card-header bg-success text-white">✅ Último boleto emitido</div>
+        <div class="card-body">
+          <p><strong>Pasajero:</strong> {{ ultimoPasaje.nombreCompleto }}</p>
+          <p><strong>DNI:</strong> {{ ultimoPasaje.documentoPasajero }}</p>
+          <p><strong>Ruta:</strong> {{ ultimoPasaje.origen }} → {{ ultimoPasaje.destino }}</p>
+          <p><strong>Asiento:</strong> {{ ultimoPasaje.asiento }}</p>
+          <p><strong>Viaje:</strong> {{ ultimoPasaje.numeroViaje }}</p>
+          <p class="mb-0"><strong>Total:</strong> S/ {{ ultimoPasaje.precio | number: '1.2-2' }}</p>
+        </div>
+      </div>
+    } @else {
+      <div class="card bg-light border-0">
+        <div class="card-body text-center text-muted py-5">
+          <div class="fs-1 mb-2">🎫</div>
+          <p>El boleto emitido aparecerá aquí</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+</div>

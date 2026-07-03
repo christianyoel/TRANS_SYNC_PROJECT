@@ -1,0 +1,45 @@
+<div class="container">
+<div class="page-header mb-4">
+  <h2 class="fw-bold text-primary mb-1">📅 Viajes Disponibles</h2>
+  <p class="text-muted mb-0">Horarios de hoy — rutas activas para reservar en counter</p>
+</div>
+
+@if (cargando) {
+  <div class="text-center py-5">
+    <div class="spinner-border text-primary"></div>
+    <p class="text-muted mt-2">Cargando viajes...</p>
+  </div>
+} @else if (mensajeError) {
+  <div class="alert alert-danger">{{ mensajeError }}</div>
+} @else if (viajes.length === 0) {
+  <div class="alert alert-info">No hay viajes activos en este momento.</div>
+} @else {
+  <div class="row g-4">
+    @for (viaje of viajes; track viaje.id) {
+      <div class="col-md-6 col-lg-4">
+        <div class="card viaje-card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="badge {{ estadoClass(viaje.estado) }}">{{ viaje.estado }}</span>
+              <strong class="text-primary">{{ viaje.numeroViaje }}</strong>
+            </div>
+            <h5 class="fw-bold">{{ viaje.origen }} → {{ viaje.destino }}</h5>
+            <p class="text-muted mb-2">
+              <small>🕐 {{ viaje.fechaSalida | date: 'dd/MM/yyyy HH:mm' }}</small>
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fs-5 fw-bold text-success">S/ {{ viaje.precio | number: '1.2-2' }}</span>
+              <span class="text-muted small">{{ viaje.capacidad }} asientos</span>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent border-0 pb-3 px-3">
+            <a routerLink="/buscar" [queryParams]="{ viaje: viaje.numeroViaje }" class="btn btn-outline-primary btn-sm w-100">
+              Buscar mi boleto
+            </a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
+</div>

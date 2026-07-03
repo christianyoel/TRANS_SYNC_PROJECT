@@ -1,0 +1,14 @@
+/* Fila en modo edición */
+tr.table-warning input.form-control-sm {
+  min-width: 90px;
+}
+
+/* Columna de acciones: evita que los botones rompan el layout */
+td:last-child {
+  white-space: nowrap;
+}
+
+/* Header de la card */
+.card-header {
+  font-size: 0.95rem;
+}

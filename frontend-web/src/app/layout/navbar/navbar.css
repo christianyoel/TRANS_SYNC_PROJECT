@@ -1,0 +1,18 @@
+.ts-navbar {
+  background: linear-gradient(135deg, #0d47a1 0%, #1565c0 50%, #1976d2 100%);
+}
+
+.brand-icon {
+  margin-right: 0.35rem;
+}
+
+.user-badge {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.9rem;
+}
+
+.nav-link.active {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

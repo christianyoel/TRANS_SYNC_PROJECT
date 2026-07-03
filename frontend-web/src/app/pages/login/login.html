@@ -1,0 +1,43 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card shadow border-0 login-card">
+        <div class="card-header bg-primary text-white text-center py-4">
+          <h4 class="mb-1">🔐 Acceso TRANS-SYNC</h4>
+          <p class="mb-0 small opacity-75">Counter · Admin · Conductor</p>
+        </div>
+        <div class="card-body p-4">
+          <form (ngSubmit)="iniciarSesion()">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Email</label>
+              <input type="email" class="form-control form-control-lg" [(ngModel)]="email" name="email" placeholder="usuario@trans-sync.com" required />
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-semibold">Contraseña</label>
+              <input type="password" class="form-control form-control-lg" [(ngModel)]="password" name="password" placeholder="••••••••" required />
+            </div>
+
+            @if (mensajeError) {
+              <div class="alert alert-danger">{{ mensajeError }}</div>
+            }
+
+            <button type="submit" class="btn btn-primary btn-lg w-100" [disabled]="cargando">
+              @if (cargando) {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+              }
+              Ingresar
+            </button>
+          </form>
+
+          <hr class="my-4" />
+
+          <p class="text-muted small mb-2">Cuentas demo:</p>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" (click)="usarDemo('admin')">Admin demo</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" (click)="usarDemo('counter')">Counter demo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

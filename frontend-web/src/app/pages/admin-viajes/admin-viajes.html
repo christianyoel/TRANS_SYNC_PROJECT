@@ -1,0 +1,103 @@
+<div class="container">
+<div class="page-header mb-4">
+  <h2 class="fw-bold text-primary mb-1">⚙️ Administración de Viajes</h2>
+  <p class="text-muted mb-0">Crea y gestiona los viajes del sistema</p>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="card shadow border-0">
+      <div class="card-header bg-primary text-white fw-semibold">Nuevo Viaje</div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="form-label">Número de Viaje</label>
+          <input class="form-control" [(ngModel)]="nuevoViaje.numeroViaje" placeholder="JUL-CUS-1024" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Origen</label>
+          <input class="form-control" [(ngModel)]="nuevoViaje.origen" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Destino</label>
+          <input class="form-control" [(ngModel)]="nuevoViaje.destino" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Fecha y Hora de Salida</label>
+          <input type="datetime-local" class="form-control" [(ngModel)]="nuevoViaje.fechaSalida" />
+        </div>
+        <div class="row g-2 mb-3">
+          <div class="col-6">
+            <label class="form-label">Precio (S/)</label>
+            <input type="number" class="form-control" [(ngModel)]="nuevoViaje.precio" min="1" />
+          </div>
+          <div class="col-6">
+            <label class="form-label">Capacidad</label>
+            <input type="number" class="form-control" [(ngModel)]="nuevoViaje.capacidad" min="1" max="50" />
+          </div>
+        </div>
+
+        @if (mensajeError) {
+          <div class="alert alert-danger py-2">{{ mensajeError }}</div>
+        }
+        @if (mensajeExito) {
+          <div class="alert alert-success py-2">{{ mensajeExito }}</div>
+        }
+
+        <button class="btn btn-primary w-100" (click)="crear()" [disabled]="guardando">
+          @if (guardando) {
+            <span class="spinner-border spinner-border-sm me-2"></span>
+          }
+          Crear Viaje
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="card shadow border-0">
+      <div class="card-header bg-white fw-semibold">Listado de Viajes</div>
+      <div class="card-body p-0">
+        @if (cargando) {
+          <div class="text-center py-5">
+            <div class="spinner-border text-primary"></div>
+          </div>
+        } @else {
+          <div class="table-responsive">
+            <table class="table table-hover mb-0 align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Código</th>
+                  <th>Ruta</th>
+                  <th>Salida</th>
+                  <th>Precio</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (v of viajes; track v.id) {
+                  <tr>
+                    <td><strong>{{ v.numeroViaje }}</strong></td>
+                    <td>{{ v.origen }} → {{ v.destino }}</td>
+                    <td>{{ v.fechaSalida | date: 'dd/MM/yy HH:mm' }}</td>
+                    <td>S/ {{ v.precio | number: '1.2-2' }}</td>
+                    <td><span class="badge {{ estadoClass(v.estado) }}">{{ v.estado }}</span></td>
+                    <td>
+                      @if (v.estado === 'ACTIVO') {
+                        <button class="btn btn-sm btn-outline-danger" (click)="cambiarEstado(v.numeroViaje, 'CANCELADO')">Cancelar</button>
+                      }
+                      @if (v.estado === 'CANCELADO') {
+                        <button class="btn btn-sm btn-outline-success" (click)="cambiarEstado(v.numeroViaje, 'ACTIVO')">Reactivar</button>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+</div>

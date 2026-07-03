@@ -1,0 +1,323 @@
+<div class="container">
+  <div class="page-header mb-4">
+    <h2 class="fw-bold text-primary mb-1">📦 Administración de Encomiendas</h2>
+    <p class="text-muted mb-0">Registra envíos y gestiona su estado de entrega</p>
+  </div>
+
+  <!-- ── Mensajes globales ──────────────────────────────────────────────── -->
+  @if (mensajeError) {
+    <div class="alert alert-danger alert-dismissible py-2" role="alert">
+      {{ mensajeError }}
+      <button type="button" class="btn-close" (click)="mensajeError = ''"></button>
+    </div>
+  }
+  @if (mensajeExito) {
+    <div class="alert alert-success alert-dismissible py-2" role="alert">
+      {{ mensajeExito }}
+      <button type="button" class="btn-close" (click)="mensajeExito = ''"></button>
+    </div>
+  }
+
+  <div class="row g-4">
+
+    <!-- ── Panel de registro (ReactiveFormsModule) ────────────────────────── -->
+    <div class="col-lg-4">
+      <div class="card shadow border-0">
+        <div class="card-header bg-primary text-white fw-semibold">Registrar Encomienda</div>
+        <div class="card-body">
+          <form [formGroup]="registroForm" (ngSubmit)="registrar()" novalidate>
+
+            <div class="mb-3">
+              <label class="form-label">Remitente <span class="text-danger">*</span></label>
+              <input class="form-control"
+                     [class.is-invalid]="invalido(registroForm, 'remitente')"
+                     formControlName="remitente"
+                     placeholder="Nombre del remitente" />
+              @if (invalido(registroForm, 'remitente')) {
+                <div class="invalid-feedback">{{ errorMsg(registroForm, 'remitente') }}</div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Destinatario <span class="text-danger">*</span></label>
+              <input class="form-control"
+                     [class.is-invalid]="invalido(registroForm, 'destinatario')"
+                     formControlName="destinatario"
+                     placeholder="Nombre del destinatario" />
+              @if (invalido(registroForm, 'destinatario')) {
+                <div class="invalid-feedback">{{ errorMsg(registroForm, 'destinatario') }}</div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Origen <span class="text-danger">*</span></label>
+              <input class="form-control"
+                     [class.is-invalid]="invalido(registroForm, 'origen')"
+                     formControlName="origen" />
+              @if (invalido(registroForm, 'origen')) {
+                <div class="invalid-feedback">{{ errorMsg(registroForm, 'origen') }}</div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Destino <span class="text-danger">*</span></label>
+              <input class="form-control"
+                     [class.is-invalid]="invalido(registroForm, 'destino')"
+                     formControlName="destino" />
+              @if (invalido(registroForm, 'destino')) {
+                <div class="invalid-feedback">{{ errorMsg(registroForm, 'destino') }}</div>
+              }
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label">Peso (kg) <span class="text-danger">*</span></label>
+                <input type="number" class="form-control"
+                       [class.is-invalid]="invalido(registroForm, 'peso')"
+                       formControlName="peso" min="0.01" step="0.1" />
+                @if (invalido(registroForm, 'peso')) {
+                  <div class="invalid-feedback">{{ errorMsg(registroForm, 'peso') }}</div>
+                }
+              </div>
+              <div class="col-6">
+                <label class="form-label">Precio (S/) <span class="text-danger">*</span></label>
+                <input type="number" class="form-control"
+                       [class.is-invalid]="invalido(registroForm, 'precio')"
+                       formControlName="precio" min="0.01" step="0.5" />
+                @if (invalido(registroForm, 'precio')) {
+                  <div class="invalid-feedback">{{ errorMsg(registroForm, 'precio') }}</div>
+                }
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="guardando">
+              @if (guardando) {
+                <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+              }
+              Registrar Encomienda
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Tabla de encomiendas ───────────────────────────────────────────── -->
+    <div class="col-lg-8">
+      <div class="card shadow border-0">
+
+        <!-- Barra de herramientas: búsqueda + filtro (ngModel — solo UI) -->
+        <div class="card-header bg-white">
+          <div class="row g-2 align-items-end">
+
+            <div class="col-md-5">
+              <label class="form-label small mb-1">🔍 Buscar remitente / destinatario</label>
+              <div class="input-group input-group-sm">
+                <input class="form-control" [(ngModel)]="textoBusqueda"
+                       placeholder="Nombre..." (keyup.enter)="buscar()" />
+                <button class="btn btn-outline-primary" (click)="buscar()" [disabled]="buscando">
+                  @if (buscando) {
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                  } @else { Buscar }
+                </button>
+                @if (resultadosBusqueda !== null) {
+                  <button class="btn btn-outline-secondary" (click)="limpiarBusqueda()">✕</button>
+                }
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label small mb-1">📋 Filtrar por estado</label>
+              <div class="input-group input-group-sm">
+                <select class="form-select" [(ngModel)]="filtroEstado">
+                  <option value="">Todos</option>
+                  @for (est of estados; track est) {
+                    <option [value]="est">{{ estadoLabel(est) }}</option>
+                  }
+                </select>
+                <button class="btn btn-outline-primary" (click)="aplicarFiltro()">Filtrar</button>
+                @if (filtroEstado) {
+                  <button class="btn btn-outline-secondary" (click)="limpiarFiltro()">✕</button>
+                }
+              </div>
+            </div>
+
+            <div class="col-md-3 text-end">
+              <button class="btn btn-sm btn-outline-secondary" (click)="cargar()">↻ Actualizar</button>
+            </div>
+
+          </div>
+
+          @if (resultadosBusqueda !== null) {
+            <div class="mt-2">
+              <span class="badge bg-info text-dark">
+                {{ resultadosBusqueda.length }} resultado(s) para "{{ textoBusqueda }}"
+              </span>
+            </div>
+          } @else if (filtroEstado) {
+            <div class="mt-2">
+              <span class="badge" [class]="estadoClass(filtroEstado)">
+                Mostrando: {{ estadoLabel(filtroEstado) }} · {{ paginaActual.totalElements }} total
+              </span>
+            </div>
+          }
+        </div>
+
+        <!-- Tabla -->
+        <div class="card-body p-0">
+          @if (cargando) {
+            <div class="text-center py-5">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+            </div>
+          } @else {
+            <div class="table-responsive">
+              <table class="table table-hover mb-0 align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>ID</th><th>Remitente</th><th>Destinatario</th>
+                    <th>Ruta</th><th>Peso</th><th>Precio</th>
+                    <th>Fecha</th><th>Estado</th><th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (enc of encomiendas; track enc.id) {
+
+                    <!-- ── Modo edición inline (ReactiveFormsModule) ──────── -->
+                    @if (editandoId === enc.id) {
+                      <tr class="table-warning" [formGroup]="editForm">
+                        <td><strong>#{{ enc.id }}</strong></td>
+                        <td>
+                          <input class="form-control form-control-sm"
+                                 [class.is-invalid]="invalido(editForm, 'remitente')"
+                                 formControlName="remitente" />
+                          @if (invalido(editForm, 'remitente')) {
+                            <div class="invalid-feedback d-block small">{{ errorMsg(editForm, 'remitente') }}</div>
+                          }
+                        </td>
+                        <td>
+                          <input class="form-control form-control-sm"
+                                 [class.is-invalid]="invalido(editForm, 'destinatario')"
+                                 formControlName="destinatario" />
+                          @if (invalido(editForm, 'destinatario')) {
+                            <div class="invalid-feedback d-block small">{{ errorMsg(editForm, 'destinatario') }}</div>
+                          }
+                        </td>
+                        <td>
+                          <input class="form-control form-control-sm mb-1"
+                                 formControlName="origen" placeholder="Origen" />
+                          <input class="form-control form-control-sm"
+                                 formControlName="destino" placeholder="Destino" />
+                        </td>
+                        <td>
+                          <input type="number" class="form-control form-control-sm"
+                                 formControlName="peso" min="0.01" style="width:75px" />
+                        </td>
+                        <td>
+                          <input type="number" class="form-control form-control-sm"
+                                 formControlName="precio" min="0.01" style="width:80px" />
+                        </td>
+                        <td>{{ enc.fecha | date: 'dd/MM/yy HH:mm' }}</td>
+                        <td>
+                          <span class="badge {{ estadoClass(enc.estado) }}">
+                            {{ estadoLabel(enc.estado) }}
+                          </span>
+                        </td>
+                        <td>
+                          <button class="btn btn-sm btn-success me-1"
+                                  (click)="guardarEdicion(enc.id)"
+                                  [disabled]="guardandoEdicion || editForm.invalid">
+                            @if (guardandoEdicion) {
+                              <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                            } @else { ✓ }
+                          </button>
+                          <button class="btn btn-sm btn-secondary" (click)="cancelarEdicion()">✕</button>
+                        </td>
+                      </tr>
+
+                    <!-- ── Modo lectura ──────────────────────────────────── -->
+                    } @else {
+                      <tr>
+                        <td><strong>#{{ enc.id }}</strong></td>
+                        <td>{{ enc.remitente }}</td>
+                        <td>{{ enc.destinatario }}</td>
+                        <td>{{ enc.origen }} → {{ enc.destino }}</td>
+                        <td>{{ enc.peso | number: '1.1-2' }} kg</td>
+                        <td>S/ {{ enc.precio | number: '1.2-2' }}</td>
+                        <td>{{ enc.fecha | date: 'dd/MM/yy HH:mm' }}</td>
+                        <td>
+                          <span class="badge {{ estadoClass(enc.estado) }}">
+                            {{ estadoLabel(enc.estado) }}
+                          </span>
+                        </td>
+                        <td>
+                          @if (enc.estado === 'REGISTRADA') {
+                            <button class="btn btn-sm btn-outline-secondary me-1"
+                                    (click)="iniciarEdicion(enc)" title="Editar">✏️</button>
+                            <button class="btn btn-sm btn-outline-warning me-1"
+                                    (click)="cambiarEstado(enc.id, 'EN_TRANSITO')">En tránsito</button>
+                            <button class="btn btn-sm btn-outline-danger"
+                                    (click)="cambiarEstado(enc.id, 'CANCELADA')">Cancelar</button>
+                          }
+                          @if (enc.estado === 'EN_TRANSITO') {
+                            <button class="btn btn-sm btn-outline-success"
+                                    (click)="cambiarEstado(enc.id, 'ENTREGADA')">Entregar</button>
+                          }
+                          @if (enc.estado === 'ENTREGADA') {
+                            <span class="text-muted small">Finalizada</span>
+                          }
+                          @if (enc.estado === 'CANCELADA') {
+                            <button class="btn btn-sm btn-danger"
+                                    (click)="eliminar(enc)" title="Eliminar">🗑 Eliminar</button>
+                          }
+                        </td>
+                      </tr>
+                    }
+
+                  } @empty {
+                    <tr>
+                      <td colspan="9" class="text-center text-muted py-4">
+                        @if (resultadosBusqueda !== null) {
+                          No se encontraron resultados para "{{ textoBusqueda }}".
+                        } @else {
+                          No hay encomiendas registradas.
+                        }
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Paginación -->
+            @if (resultadosBusqueda === null && paginaActual.totalPages > 1) {
+              <div class="card-footer bg-white d-flex justify-content-between align-items-center">
+                <small class="text-muted">
+                  Página {{ paginaActual.page + 1 }} de {{ paginaActual.totalPages }}
+                  · {{ paginaActual.totalElements }} encomiendas
+                </small>
+                <nav>
+                  <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item" [class.disabled]="page === 0">
+                      <button class="page-link" (click)="irAPagina(page - 1)">‹</button>
+                    </li>
+                    @for (p of paginas; track p) {
+                      <li class="page-item" [class.active]="p === page">
+                        <button class="page-link" (click)="irAPagina(p)">{{ p + 1 }}</button>
+                      </li>
+                    }
+                    <li class="page-item" [class.disabled]="paginaActual.last">
+                      <button class="page-link" (click)="irAPagina(page + 1)">›</button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            }
+          }
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

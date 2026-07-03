@@ -1,0 +1,110 @@
+<div class="container">
+<div class="page-header mb-4">
+  <h2 class="fw-bold text-primary mb-1">👥 Administración de Usuarios</h2>
+  <p class="text-muted mb-0">Gestiona el personal del sistema</p>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="card shadow border-0">
+      <div class="card-header bg-primary text-white fw-semibold">Nuevo Usuario</div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label class="form-label">Nombres</label>
+          <input class="form-control" [(ngModel)]="nuevoUsuario.nombres" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Apellidos</label>
+          <input class="form-control" [(ngModel)]="nuevoUsuario.apellidos" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">DNI</label>
+          <input class="form-control" [(ngModel)]="nuevoUsuario.documentoIdentidad" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" [(ngModel)]="nuevoUsuario.email" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Contraseña</label>
+          <input type="password" class="form-control" [(ngModel)]="nuevoUsuario.password" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Rol</label>
+          <select class="form-select" [(ngModel)]="nuevoUsuario.rol">
+            @for (r of roles; track r) {
+              <option [value]="r">{{ r }}</option>
+            }
+          </select>
+        </div>
+
+        @if (mensajeError) {
+          <div class="alert alert-danger py-2">{{ mensajeError }}</div>
+        }
+        @if (mensajeExito) {
+          <div class="alert alert-success py-2">{{ mensajeExito }}</div>
+        }
+
+        <button class="btn btn-primary w-100" (click)="registrar()" [disabled]="guardando">
+          @if (guardando) {
+            <span class="spinner-border spinner-border-sm me-2"></span>
+          }
+          Registrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="card shadow border-0">
+      <div class="card-header bg-white fw-semibold">Personal Registrado</div>
+      <div class="card-body p-0">
+        @if (cargando) {
+          <div class="text-center py-5">
+            <div class="spinner-border text-primary"></div>
+          </div>
+        } @else {
+          <div class="table-responsive">
+            <table class="table table-hover mb-0 align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>DNI</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Registro</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (u of usuarios; track u.id) {
+                  <tr [class.table-secondary]="!u.activo">
+                    <td>{{ u.nombres }} {{ u.apellidos }}</td>
+                    <td>{{ u.email }}</td>
+                    <td>{{ u.documentoIdentidad }}</td>
+                    <td><span class="badge {{ rolBadge(u.rol) }}">{{ u.rol }}</span></td>
+                    <td>
+                      @if (u.activo) {
+                        <span class="text-success">Activo</span>
+                      } @else {
+                        <span class="text-danger">Inactivo</span>
+                      }
+                    </td>
+                    <td>{{ u.fechaCreacion | date: 'dd/MM/yy' }}</td>
+                    <td>
+                      @if (u.activo) {
+                        <button class="btn btn-sm btn-outline-danger" (click)="desactivar(u.id)">Desactivar</button>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,8 @@
+.viaje-card {
+  border-radius: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.viaje-card:hover {
+  transform: translateY(-3px);
+}

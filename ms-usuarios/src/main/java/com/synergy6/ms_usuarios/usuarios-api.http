@@ -1,12 +1,30 @@
-### Registrar un nuevo Despachador (Counter)
+### Login
+POST http://localhost:8081/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@trans-sync.com",
+  "password": "admin123"
+}
+
+### Registrar counter
 POST http://localhost:8081/api/usuarios
 Content-Type: application/json
 
 {
-  "nombres": "María Elena",
-  "apellidos": "Condori",
-  "documentoIdentidad": "76543210",
-  "email": "maria.condori@transveloz.com",
+  "nombres": "Pedro",
+  "apellidos": "Quispe",
+  "documentoIdentidad": "71234567",
+  "email": "pedro.quispe@transveloz.com",
   "password": "password123",
   "rol": "COUNTER"
 }
+
+### Listar usuarios
+GET http://localhost:8081/api/usuarios
+
+### Obtener usuario por id
+GET http://localhost:8081/api/usuarios/1
+
+### Desactivar usuario
+PATCH http://localhost:8081/api/usuarios/2/desactivar

@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --ts-primary: #1565c0;
+  --ts-bg: #f4f8fc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--ts-bg);
+  color: #1a2332;
+}
+
+.page-header h2 {
+  letter-spacing: -0.02em;
+}
+
+.container {
+  max-width: 1140px;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.btn {
+  border-radius: 0.6rem;
+}
+
+.form-control,
+.form-select {
+  border-radius: 0.6rem;
+}
+
+.alert {
+  border-radius: 0.75rem;
+}

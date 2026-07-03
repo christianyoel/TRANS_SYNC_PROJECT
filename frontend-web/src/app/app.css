@@ -1,0 +1,9 @@
+.main-content {
+  min-height: calc(100vh - 160px);
+  padding: 1.5rem 0 2rem;
+}
+
+.app-footer {
+  border-top: 1px solid #e3eaf3;
+  background: #f8fafc;
+}

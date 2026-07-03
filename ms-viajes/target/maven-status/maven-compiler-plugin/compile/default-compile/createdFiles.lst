@@ -1,0 +1,15 @@
+com\synergy6\ms_viajes\exception\BusinessException.class
+com\synergy6\ms_viajes\dto\ViajeResponseDto$ViajeResponseDtoBuilder.class
+com\synergy6\ms_viajes\dto\ViajeResponseDto.class
+com\synergy6\ms_viajes\service\ViajeService.class
+com\synergy6\ms_viajes\config\DataInitializer.class
+com\synergy6\ms_viajes\repository\ViajeRepository.class
+com\synergy6\ms_viajes\controller\ViajeController.class
+com\synergy6\ms_viajes\model\ViajeEstado.class
+com\synergy6\ms_viajes\model\Viaje.class
+com\synergy6\ms_viajes\exception\GlobalExceptionHandler.class
+com\synergy6\ms_viajes\exception\ApiError.class
+com\synergy6\ms_viajes\dto\ViajeEstadoDto.class
+com\synergy6\ms_viajes\dto\ViajeRequestDto.class
+com\synergy6\ms_viajes\exception\ApiError$ApiErrorBuilder.class
+com\synergy6\ms_viajes\MsViajesApplication.class

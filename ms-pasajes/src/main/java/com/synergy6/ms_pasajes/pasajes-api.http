@@ -1,0 +1,33 @@
+### 1. Vender pasaje (requiere viaje creado en ms-viajes)
+POST http://localhost:8082/api/pasajes/vender
+Content-Type: application/json
+
+{
+  "numeroViaje": "JUL-CUS-1024",
+  "asiento": 3,
+  "documentoPasajero": "72000000",
+  "nombrePasajero": "Juan Perez"
+}
+
+### 2. Sobreventa mismo asiento (debe fallar)
+POST http://localhost:8082/api/pasajes/vender
+Content-Type: application/json
+
+{
+  "numeroViaje": "JUL-CUS-1024",
+  "asiento": 3,
+  "documentoPasajero": "45121212",
+  "nombrePasajero": "Carlos Mendoza"
+}
+
+### 3. Buscar reserva
+GET http://localhost:8082/api/pasajes/buscar?documento=72000000&numeroViaje=JUL-CUS-1024
+
+### 4. Asientos disponibles
+GET http://localhost:8082/api/pasajes/viajes/JUL-CUS-1024/asientos-disponibles
+
+### 5. Historial pasajero
+GET http://localhost:8082/api/pasajes/historial?documento=72000000
+
+### 6. Cancelar pasaje
+DELETE http://localhost:8082/api/pasajes/1

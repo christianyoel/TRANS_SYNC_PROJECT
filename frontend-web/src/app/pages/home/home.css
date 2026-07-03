@@ -1,0 +1,44 @@
+.hero {
+  background: linear-gradient(135deg, #0d47a1, #1976d2 60%, #42a5f5);
+  border-radius: 0 0 2rem 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  font-size: 0.85rem;
+}
+
+.hero-subtitle {
+  max-width: 640px;
+  opacity: 0.95;
+}
+
+.feature-card {
+  background: #fff;
+  border: 1px solid #e3eaf3;
+  border-radius: 1rem;
+  padding: 1.75rem;
+  box-shadow: 0 8px 24px rgba(13, 71, 161, 0.06);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(13, 71, 161, 0.12);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.info-strip {
+  background: #f4f8fc;
+  border-top: 1px solid #e3eaf3;
+}

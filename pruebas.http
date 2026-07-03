@@ -1,0 +1,96 @@
+### =============================================
+### TRANS-SYNC - Pruebas completas via Gateway (:8080)
+### =============================================
+
+@baseUrl = http://localhost:8080
+@token = {{login.response.body.token}}
+
+### 1. Login ADMIN (usuario seed: admin@trans-sync.com / admin123)
+# @name login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@trans-sync.com",
+  "password": "admin123"
+}
+
+### 2. Login COUNTER (counter@trans-sync.com / counter123)
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "counter@trans-sync.com",
+  "password": "counter123"
+}
+
+### 3. Crear viaje (requiere token ADMIN)
+POST {{baseUrl}}/api/viajes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "numeroViaje": "JUL-CUS-1024",
+  "origen": "Juliaca",
+  "destino": "Cusco",
+  "fechaSalida": "2026-07-25T14:30:00",
+  "precio": 45.00,
+  "capacidad": 7
+}
+
+### 4. Listar viajes activos (público)
+GET {{baseUrl}}/api/viajes
+
+### 5. Detalle de viaje (público)
+GET {{baseUrl}}/api/viajes/JUL-CUS-1024
+
+### 6. Asientos disponibles (requiere token COUNTER/ADMIN)
+GET {{baseUrl}}/api/pasajes/viajes/JUL-CUS-1024/asientos-disponibles
+Authorization: Bearer {{token}}
+
+### 7. Vender pasaje (requiere token COUNTER/ADMIN)
+POST {{baseUrl}}/api/pasajes/vender
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "numeroViaje": "JUL-CUS-1024",
+  "asiento": 3,
+  "documentoPasajero": "72000000",
+  "nombrePasajero": "Juan Perez"
+}
+
+### 8. Buscar reserva (público - pantalla pasajero)
+GET {{baseUrl}}/api/pasajes/buscar?documento=72000000&numeroViaje=JUL-CUS-1024
+
+### 9. Historial del pasajero (requiere token)
+GET {{baseUrl}}/api/pasajes/historial?documento=72000000
+Authorization: Bearer {{token}}
+
+### 10. Intentar vender mismo asiento (debe fallar 400)
+POST {{baseUrl}}/api/pasajes/vender
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "numeroViaje": "JUL-CUS-1024",
+  "asiento": 3,
+  "documentoPasajero": "45121212",
+  "nombrePasajero": "Carlos Mendoza"
+}
+
+### 11. Listar usuarios (solo ADMIN)
+GET {{baseUrl}}/api/usuarios
+Authorization: Bearer {{token}}
+
+### 12. Ver rutas del Gateway
+GET {{baseUrl}}/actuator/gateway/routes
+
+### 13. Health checks
+GET http://localhost:8081/actuator/health
+###
+GET http://localhost:8082/actuator/health
+###
+GET http://localhost:8083/actuator/health
+###
+GET {{baseUrl}}/actuator/health

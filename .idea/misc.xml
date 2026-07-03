@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="KubernetesApiProvider">{}</component>
-  <component name="ProjectRootManager" version="2">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/ms-usuarios/pom.xml" />
+        <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-pasajes/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-viajes/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-encomiendas/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-auditoria/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="26" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

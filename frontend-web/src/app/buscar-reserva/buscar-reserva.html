@@ -1,0 +1,78 @@
+<div class="container">
+<div class="page-header mb-4">
+  <h2 class="fw-bold text-primary mb-1">🔍 Buscar Boleto</h2>
+  <p class="text-muted mb-0">Consulta tu reserva con DNI y número de viaje</p>
+</div>
+
+<div class="card shadow border-0">
+  <div class="card-body p-4">
+    <form>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-bold">Documento del Pasajero</label>
+          <input type="text" class="form-control" placeholder="Ej: 72000000" name="documento" [(ngModel)]="documento" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-bold">Número de Viaje</label>
+          <input type="text" class="form-control" placeholder="Ej: JUL-CUS-1024" name="numeroViaje" [(ngModel)]="numeroViaje" />
+        </div>
+      </div>
+
+      <div class="text-center mt-3 d-flex justify-content-center gap-3 flex-wrap">
+        <button type="button" class="btn btn-success btn-lg px-5" (click)="consultarReserva()" [disabled]="cargando || !documento || !numeroViaje">
+          Consultar Reserva
+        </button>
+        <button type="button" class="btn btn-secondary btn-lg px-4" (click)="limpiarFormulario()" [disabled]="cargando">
+          Limpiar
+        </button>
+      </div>
+    </form>
+
+    @if (cargando) {
+      <div class="text-center mt-4">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="text-muted mt-2">Conectando con TRANS-SYNC Server...</p>
+      </div>
+    }
+
+    @if (mensajeError) {
+      <div class="alert alert-danger mt-4 text-center">
+        <strong>¡Atención!</strong> {{ mensajeError }}
+      </div>
+    }
+
+    @if (reservaEncontrada) {
+      <div class="card mt-4 border-success shadow-sm ticket-card">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">✅ Reserva Confirmada</h5>
+        </div>
+        <div class="card-body">
+          <div class="row text-center g-4">
+            <div class="col-md-4">
+              <p class="text-muted mb-1">Pasajero</p>
+              <h5 class="fw-bold">{{ reservaEncontrada.nombreCompleto }}</h5>
+              <small class="text-muted">DNI: {{ reservaEncontrada.documentoPasajero }}</small>
+            </div>
+            <div class="col-md-4 border-start border-end">
+              <p class="text-muted mb-1">Ruta</p>
+              <h5 class="fw-bold">{{ reservaEncontrada.origen }} ➔ {{ reservaEncontrada.destino }}</h5>
+              <small class="text-muted">Viaje: {{ reservaEncontrada.numeroViaje }}</small>
+            </div>
+            <div class="col-md-4">
+              <p class="text-muted mb-1">Asiento / Fecha</p>
+              <h5 class="fw-bold text-primary">N° {{ reservaEncontrada.asiento }}</h5>
+              <small>{{ reservaEncontrada.fechaViaje }}</small>
+            </div>
+          </div>
+          <div class="text-center mt-3">
+            <span class="badge bg-primary fs-6">S/ {{ reservaEncontrada.precio | number: '1.2-2' }}</span>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent border-top-0 text-end pb-3 pe-4">
+          <button type="button" class="btn btn-outline-success btn-sm" onclick="window.print()">🖨️ Imprimir boleto</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+</div>
