@@ -4,6 +4,7 @@ import com.synergy6.ms_encomiendas.client.AuditoriaClient;
 import com.synergy6.ms_encomiendas.dto.EncomiendaRequest;
 import com.synergy6.ms_encomiendas.dto.EncomiendaResponse;
 import com.synergy6.ms_encomiendas.dto.PageResponse;
+import com.synergy6.ms_encomiendas.dto.ResumenEncomiendas;
 import com.synergy6.ms_encomiendas.exception.BusinessException;
 import com.synergy6.ms_encomiendas.model.Encomienda;
 import com.synergy6.ms_encomiendas.model.EstadoEncomienda;
@@ -124,6 +125,22 @@ public class EncomiendaService {
         auditoriaClient.registrar(
                 usuarioEmail, usuarioRol, "DELETE", "ENCOMIENDA", id,
                 "Eliminada encomienda #" + id + " de " + encomienda.getRemitente());
+    }
+
+    public ResumenEncomiendas resumen() {
+        long total       = encomiendaRepository.count();
+        long registradas = encomiendaRepository.countByEstado(EstadoEncomienda.REGISTRADA);
+        long enTransito  = encomiendaRepository.countByEstado(EstadoEncomienda.EN_TRANSITO);
+        long entregadas  = encomiendaRepository.countByEstado(EstadoEncomienda.ENTREGADA);
+        long canceladas  = encomiendaRepository.countByEstado(EstadoEncomienda.CANCELADA);
+
+        return ResumenEncomiendas.builder()
+                .total(total)
+                .registradas(registradas)
+                .enTransito(enTransito)
+                .entregadas(entregadas)
+                .canceladas(canceladas)
+                .build();
     }
 
     // ── Helper privado ────────────────────────────────────────────────────────

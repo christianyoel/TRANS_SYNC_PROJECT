@@ -1,0 +1,45 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card border-0 shadow">
+
+        <div class="card-header bg-primary text-white py-4 text-center">
+          <div class="fs-1 mb-2">👤</div>
+          <h4 class="mb-0 fw-bold">{{ nombres }}</h4>
+          <small class="opacity-75">{{ email }}</small>
+        </div>
+
+        <div class="card-body p-4">
+
+          <div class="mb-3">
+            <label class="form-label text-muted small fw-semibold">EMAIL</label>
+            <div class="form-control bg-light">{{ email }}</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label text-muted small fw-semibold">NOMBRE COMPLETO</label>
+            <div class="form-control bg-light">{{ nombres }}</div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label text-muted small fw-semibold">ROL EN EL SISTEMA</label>
+            <div class="form-control bg-light d-flex align-items-center gap-3">
+              <span class="badge {{ rolClass() }} px-3 py-2 fs-6">{{ rol }}</span>
+              <span class="text-muted small">{{ rolDescripcion() }}</span>
+            </div>
+          </div>
+
+          <hr class="my-3">
+
+          <div class="d-grid gap-2">
+            <a routerLink="/" class="btn btn-outline-secondary">← Volver al inicio</a>
+            <button class="btn btn-danger" (click)="cerrarSesion()">
+              🚪 Cerrar sesión
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,8 +20,11 @@ public interface EncomiendaRepository extends JpaRepository<Encomienda, Long> {
     /** Filtrar por estado con paginación. */
     Page<Encomienda> findByEstadoOrderByFechaDesc(EstadoEncomienda estado, Pageable pageable);
 
-    /** Filtrar por estado sin paginación (para listados internos y seguimiento público). */
+    /** Devuelve conteos por estado para el Dashboard. */
     List<Encomienda> findByEstadoOrderByFechaDesc(EstadoEncomienda estado);
+
+    /** Conteo por estado para el resumen del Dashboard. */
+    long countByEstado(EstadoEncomienda estado);
 
     /** Búsqueda de texto libre en remitente o destinatario (case-insensitive). */
     @Query("SELECT e FROM Encomienda e WHERE " +
