@@ -1,4 +1,3 @@
-import { DecimalPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DashboardData, DashboardService } from '../../core/services/dashboard.service';
@@ -6,7 +5,7 @@ import { DashboardData, DashboardService } from '../../core/services/dashboard.s
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [DecimalPipe, RouterLink],
+  imports: [RouterLink],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css',
 })

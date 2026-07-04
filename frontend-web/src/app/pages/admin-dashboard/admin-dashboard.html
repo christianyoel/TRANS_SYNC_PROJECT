@@ -1,11 +1,17 @@
-<div class="container py-4">
+<div class="container">
 
+  <!-- ── Header ────────────────────────────────────────────────────────── -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-      <h2 class="fw-bold text-primary mb-1">📊 Dashboard</h2>
-      <p class="text-muted mb-0">Resumen general del sistema TRANS-SYNC</p>
+      <h2 class="fw-bold mb-1" style="letter-spacing:-.02em">
+        📊 Dashboard
+      </h2>
+      <p class="text-muted mb-0" style="font-size:.9rem">
+        Resumen en tiempo real del sistema TRANS-SYNC
+      </p>
     </div>
-    <button class="btn btn-outline-primary btn-sm" (click)="cargar()" [disabled]="cargando">
+    <button class="btn btn-outline-primary btn-sm px-3"
+            (click)="cargar()" [disabled]="cargando">
       ↻ Actualizar
     </button>
   </div>
@@ -16,123 +22,117 @@
 
   @if (cargando) {
     <div class="text-center py-5">
-      <div class="spinner-border text-primary" role="status"></div>
-      <p class="text-muted mt-2">Cargando datos...</p>
+      <div class="spinner-border text-primary" role="status" style="width:2.5rem;height:2.5rem"></div>
+      <p class="text-muted mt-3">Cargando datos...</p>
     </div>
   }
 
   @if (data && !cargando) {
 
-    <!-- ── Fila 1: Encomiendas ────────────────────────────────────────────── -->
-    <h5 class="fw-semibold text-muted mb-3 mt-2">📦 Encomiendas</h5>
-    <div class="row g-3 mb-4">
+    <!-- ── Encomiendas ─────────────────────────────────────────────────── -->
+    <p class="section-title mb-3">Encomiendas</p>
+    <div class="row g-3 mb-5">
 
-      <div class="col-6 col-md-4 col-lg-2">
-        <div class="card border-0 shadow-sm text-center h-100">
-          <div class="card-body py-4">
-            <div class="display-6 fw-bold text-dark">{{ data.encomiendas.total }}</div>
-            <div class="text-muted small mt-1">Total</div>
-          </div>
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card total">
+          <div class="stat-icon">📦</div>
+          <div class="stat-value">{{ data.encomiendas.total }}</div>
+          <div class="stat-label">Total</div>
         </div>
       </div>
 
-      <div class="col-6 col-md-4 col-lg-2">
-        <div class="card border-0 shadow-sm text-center h-100 border-start border-4 border-primary">
-          <div class="card-body py-4">
-            <div class="display-6 fw-bold text-primary">{{ data.encomiendas.registradas }}</div>
-            <div class="text-muted small mt-1">Registradas</div>
-          </div>
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card registrada">
+          <div class="stat-icon">📋</div>
+          <div class="stat-value">{{ data.encomiendas.registradas }}</div>
+          <div class="stat-label">Registradas</div>
         </div>
       </div>
 
-      <div class="col-6 col-md-4 col-lg-2">
-        <div class="card border-0 shadow-sm text-center h-100 border-start border-4 border-warning">
-          <div class="card-body py-4">
-            <div class="display-6 fw-bold text-warning">{{ data.encomiendas.enTransito }}</div>
-            <div class="text-muted small mt-1">En tránsito</div>
-          </div>
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card transito">
+          <div class="stat-icon">🚚</div>
+          <div class="stat-value">{{ data.encomiendas.enTransito }}</div>
+          <div class="stat-label">En tránsito</div>
         </div>
       </div>
 
-      <div class="col-6 col-md-4 col-lg-2">
-        <div class="card border-0 shadow-sm text-center h-100 border-start border-4 border-success">
-          <div class="card-body py-4">
-            <div class="display-6 fw-bold text-success">{{ data.encomiendas.entregadas }}</div>
-            <div class="text-muted small mt-1">Entregadas</div>
-          </div>
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card entregada">
+          <div class="stat-icon">✅</div>
+          <div class="stat-value">{{ data.encomiendas.entregadas }}</div>
+          <div class="stat-label">Entregadas</div>
         </div>
       </div>
 
-      <div class="col-6 col-md-4 col-lg-2">
-        <div class="card border-0 shadow-sm text-center h-100 border-start border-4 border-danger">
-          <div class="card-body py-4">
-            <div class="display-6 fw-bold text-danger">{{ data.encomiendas.canceladas }}</div>
-            <div class="text-muted small mt-1">Canceladas</div>
-          </div>
+      <div class="col-6 col-md-4 col-xl-2">
+        <div class="stat-card cancelada">
+          <div class="stat-icon">❌</div>
+          <div class="stat-value">{{ data.encomiendas.canceladas }}</div>
+          <div class="stat-label">Canceladas</div>
         </div>
       </div>
 
     </div>
 
-    <!-- ── Fila 2: Viajes ─────────────────────────────────────────────────── -->
-    <h5 class="fw-semibold text-muted mb-3">🚌 Viajes</h5>
-    <div class="row g-3 mb-4">
+    <!-- ── Viajes ──────────────────────────────────────────────────────── -->
+    <p class="section-title mb-3">Viajes</p>
+    <div class="row g-3 mb-5">
 
       <div class="col-6 col-md-3">
-        <div class="card border-0 shadow-sm text-center h-100">
-          <div class="card-body py-4">
-            <div class="display-6 fw-bold text-dark">{{ data.totalViajes }}</div>
-            <div class="text-muted small mt-1">Total registrados</div>
-          </div>
+        <div class="stat-card viajes">
+          <div class="stat-icon">🗒️</div>
+          <div class="stat-value">{{ data.totalViajes }}</div>
+          <div class="stat-label">Total registrados</div>
         </div>
       </div>
 
       <div class="col-6 col-md-3">
-        <div class="card border-0 shadow-sm text-center h-100 border-start border-4 border-success">
-          <div class="card-body py-4">
-            <div class="display-6 fw-bold text-success">{{ data.viajesActivos }}</div>
-            <div class="text-muted small mt-1">Activos</div>
-          </div>
+        <div class="stat-card activos">
+          <div class="stat-icon">🟢</div>
+          <div class="stat-value">{{ data.viajesActivos }}</div>
+          <div class="stat-label">Activos</div>
         </div>
       </div>
 
     </div>
 
-    <!-- ── Accesos rápidos ────────────────────────────────────────────────── -->
-    <h5 class="fw-semibold text-muted mb-3">⚡ Accesos rápidos</h5>
+    <!-- ── Accesos rápidos ─────────────────────────────────────────────── -->
+    <p class="section-title mb-3">Accesos rápidos</p>
     <div class="row g-3">
+
       <div class="col-6 col-md-3">
-        <a routerLink="/admin/encomiendas" class="card border-0 shadow-sm text-decoration-none text-dark h-100">
-          <div class="card-body text-center py-4">
-            <div class="fs-2 mb-2">📦</div>
-            <div class="fw-semibold">Encomiendas</div>
-          </div>
+        <a routerLink="/admin/encomiendas" class="quick-card">
+          <div class="quick-icon">📦</div>
+          <div class="fw-600">Encomiendas</div>
+          <small class="text-muted">Gestionar envíos</small>
         </a>
       </div>
+
       <div class="col-6 col-md-3">
-        <a routerLink="/admin/viajes" class="card border-0 shadow-sm text-decoration-none text-dark h-100">
-          <div class="card-body text-center py-4">
-            <div class="fs-2 mb-2">🚌</div>
-            <div class="fw-semibold">Viajes</div>
-          </div>
+        <a routerLink="/admin/viajes" class="quick-card">
+          <div class="quick-icon">🚌</div>
+          <div class="fw-600">Viajes</div>
+          <small class="text-muted">Programar rutas</small>
         </a>
       </div>
+
       <div class="col-6 col-md-3">
-        <a routerLink="/admin/usuarios" class="card border-0 shadow-sm text-decoration-none text-dark h-100">
-          <div class="card-body text-center py-4">
-            <div class="fs-2 mb-2">👥</div>
-            <div class="fw-semibold">Usuarios</div>
-          </div>
+        <a routerLink="/admin/usuarios" class="quick-card">
+          <div class="quick-icon">👥</div>
+          <div class="fw-600">Usuarios</div>
+          <small class="text-muted">Gestionar personal</small>
         </a>
       </div>
+
       <div class="col-6 col-md-3">
-        <a routerLink="/admin/auditoria" class="card border-0 shadow-sm text-decoration-none text-dark h-100">
-          <div class="card-body text-center py-4">
-            <div class="fs-2 mb-2">📋</div>
-            <div class="fw-semibold">Auditoría</div>
-          </div>
+        <a routerLink="/seguimiento-encomienda" class="quick-card">
+          <div class="quick-icon">📍</div>
+          <div class="fw-600">Seguimiento</div>
+          <small class="text-muted">Vista pública</small>
         </a>
       </div>
+
     </div>
 
   }

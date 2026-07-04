@@ -1,9 +1,11 @@
 .main-content {
   min-height: calc(100vh - 160px);
-  padding: 1.5rem 0 2rem;
+  padding: 2rem 0 3rem;
 }
 
 .app-footer {
-  border-top: 1px solid #e3eaf3;
+  border-top: 1px solid #e2e8f0;
   background: #f8fafc;
+  color: #94a3b8;
+  font-size: .82rem;
 }

@@ -90,6 +90,31 @@ export class SeguimientoEncomienda {
     return iconos[estado] ?? '📦';
   }
 
+  estadoSlug(estado: string): string {
+    const m: Record<string, string> = {
+      REGISTRADA:  'registrada',
+      EN_TRANSITO: 'en-transito',
+      ENTREGADA:   'entregada',
+      CANCELADA:   'cancelada',
+    };
+    return m[estado] ?? '';
+  }
+
+  /**
+   * Devuelve 'done', 'active' o '' para cada paso del tracker visual.
+   */
+  pasoClass(estadoActual: string, paso: string): string {
+    const orden: Record<string, number> = {
+      REGISTRADA: 1, EN_TRANSITO: 2, ENTREGADA: 3, CANCELADA: 0,
+    };
+    const actual = orden[estadoActual] ?? 0;
+    const pn     = orden[paso] ?? 0;
+    if (actual === 0) return '';          // cancelada: sin progreso
+    if (pn < actual) return 'done';
+    if (pn === actual) return 'active';
+    return '';
+  }
+
   progreso(estado: string): string {
     const pct: Record<string, string> = {
       REGISTRADA:  '15%',

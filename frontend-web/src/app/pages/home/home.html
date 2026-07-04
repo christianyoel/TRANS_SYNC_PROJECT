@@ -1,54 +1,135 @@
+<!-- ── Hero ─────────────────────────────────────────────────────────────── -->
 <section class="hero text-white text-center">
-  <div class="container py-5">
-    <div class="hero-badge mb-3">Sistema de Transporte Interprovincial</div>
-    <h1 class="display-5 fw-bold mb-3">TRANS-SYNC</h1>
-    <p class="lead mb-4 mx-auto hero-subtitle">
-      Gestión integral de pasajes, viajes y ventas en counter. Juliaca, Cusco y más rutas.
+  <div class="container position-relative">
+
+    <div class="hero-badge mb-4">
+      🚌 Sistema de Transporte Interprovincial
+    </div>
+
+    <h1 class="hero-title text-white mb-3">
+      TRANS<span style="color:#93c5fd">-SYNC</span>
+    </h1>
+
+    <p class="hero-subtitle mb-5 text-white-50 mx-auto">
+      Gestión integral de pasajes, viajes y encomiendas.<br>
+      Rutas Juliaca · Cusco · Puno · Arequipa · Lima y más.
     </p>
+
     <div class="d-flex flex-wrap justify-content-center gap-3">
-      <a routerLink="/buscar" class="btn btn-light btn-lg px-4">🔍 Buscar mi boleto</a>
-      <a routerLink="/viajes" class="btn btn-outline-light btn-lg px-4">📅 Ver viajes</a>
-      <a routerLink="/login" class="btn btn-success btn-lg px-4">🔐 Acceso personal</a>
+      <a routerLink="/buscar" class="btn hero-btn-primary btn-lg">
+        🔍 Buscar mi boleto
+      </a>
+      <a routerLink="/viajes" class="btn hero-btn-secondary btn-lg">
+        📅 Ver viajes activos
+      </a>
+      <a routerLink="/seguimiento-encomienda" class="btn hero-btn-secondary btn-lg">
+        📦 Rastrear envío
+      </a>
     </div>
+
   </div>
 </section>
 
-<section class="container py-5">
+<!-- ── Stats strip ────────────────────────────────────────────────────────── -->
+<div class="container">
+  <div class="stats-strip d-flex align-items-center flex-wrap">
+    <div class="stat-item flex-fill">
+      <div class="stat-number">6</div>
+      <div class="stat-label">Microservicios</div>
+    </div>
+    <div class="stat-divider d-none d-md-block"></div>
+    <div class="stat-item flex-fill">
+      <div class="stat-number">6+</div>
+      <div class="stat-label">Rutas activas</div>
+    </div>
+    <div class="stat-divider d-none d-md-block"></div>
+    <div class="stat-item flex-fill">
+      <div class="stat-number">JWT</div>
+      <div class="stat-label">Seguridad</div>
+    </div>
+    <div class="stat-divider d-none d-md-block"></div>
+    <div class="stat-item flex-fill">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">Disponibilidad</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Servicios ──────────────────────────────────────────────────────────── -->
+<section class="container py-5 mt-2">
+  <p class="section-title mb-2">¿Qué puedes hacer?</p>
+  <h2 class="fw-bold mb-4" style="font-size:1.75rem; letter-spacing:-.02em">
+    Todo en un solo sistema
+  </h2>
+
   <div class="row g-4">
-    <div class="col-md-4">
-      <div class="feature-card h-100">
-        <div class="feature-icon">🎫</div>
-        <h5>Pasajeros</h5>
-        <p>Consulta tu reserva con DNI y número de viaje. Resultado al instante desde el servidor.</p>
-        <a routerLink="/buscar" class="stretched-link text-primary fw-semibold">Ir a búsqueda →</a>
+    <div class="col-md-6 col-lg-3">
+      <div class="feature-card">
+        <div class="feature-icon-wrap blue">🎫</div>
+        <h5>Buscar boleto</h5>
+        <p>Consulta tu reserva con DNI y número de viaje. Resultado al instante.</p>
+        <a routerLink="/buscar" class="feature-link stretched-link">
+          Ir a búsqueda <span>→</span>
+        </a>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="feature-card h-100">
-        <div class="feature-icon">🛒</div>
-        <h5>Counter / Ventas</h5>
-        <p>Vende pasajes con control de asientos, evita sobreventa y valida viajes activos en tiempo real.</p>
-        <a routerLink="/login" class="stretched-link text-primary fw-semibold">Iniciar sesión →</a>
+
+    <div class="col-md-6 col-lg-3">
+      <div class="feature-card">
+        <div class="feature-icon-wrap green">📦</div>
+        <h5>Seguir envío</h5>
+        <p>Rastrea el estado de tu encomienda en tiempo real sin necesidad de cuenta.</p>
+        <a routerLink="/seguimiento-encomienda" class="feature-link stretched-link">
+          Rastrear <span>→</span>
+        </a>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="feature-card h-100">
-        <div class="feature-icon">⚙️</div>
+
+    <div class="col-md-6 col-lg-3">
+      <div class="feature-card">
+        <div class="feature-icon-wrap amber">🛒</div>
+        <h5>Vender pasaje</h5>
+        <p>Para counter: vende con control de asientos y validación de viajes activos.</p>
+        <a routerLink="/login" class="feature-link stretched-link">
+          Acceso counter <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+      <div class="feature-card">
+        <div class="feature-icon-wrap purple">⚙️</div>
         <h5>Administración</h5>
-        <p>Crea viajes, administra usuarios y supervisa la operación completa del sistema.</p>
-        <a routerLink="/login" class="stretched-link text-primary fw-semibold">Panel admin →</a>
+        <p>Panel completo para gestión de viajes, usuarios y encomiendas.</p>
+        <a routerLink="/login" class="feature-link stretched-link">
+          Panel admin <span>→</span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="info-strip py-4">
-  <div class="container">
-    <div class="row text-center g-3">
-      <div class="col-md-3"><strong>4</strong><br /><span class="text-muted">Microservicios</span></div>
-      <div class="col-md-3"><strong>7</strong><br /><span class="text-muted">Asientos por minivan</span></div>
-      <div class="col-md-3"><strong>JWT</strong><br /><span class="text-muted">Seguridad integrada</span></div>
-      <div class="col-md-3"><strong>24/7</strong><br /><span class="text-muted">Consulta de boletos</span></div>
+<!-- ── Rutas ──────────────────────────────────────────────────────────────── -->
+<section class="container pb-5">
+  <div class="routes-section">
+    <div class="row align-items-center g-4">
+      <div class="col-md-4">
+        <p class="section-title mb-1">Cobertura</p>
+        <h3 class="fw-bold mb-2" style="letter-spacing:-.02em">Rutas disponibles</h3>
+        <p class="text-muted mb-0" style="font-size:.9rem">
+          Conectamos las principales ciudades del sur del Perú con salidas programadas diariamente.
+        </p>
+      </div>
+      <div class="col-md-8">
+        <div class="d-flex flex-wrap gap-2">
+          <div class="route-chip">🚌 Juliaca → Cusco</div>
+          <div class="route-chip">🚌 Juliaca → Puno</div>
+          <div class="route-chip">🚌 Juliaca → Lima</div>
+          <div class="route-chip">🚌 Cusco → Arequipa</div>
+          <div class="route-chip">🚌 Cusco → Juliaca</div>
+          <div class="route-chip">🚌 Lima → Juliaca</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

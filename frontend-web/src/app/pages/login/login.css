@@ -1,4 +1,94 @@
+.login-page {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+}
+
 .login-card {
-  border-radius: 1rem;
+  border-radius: 1.5rem !important;
   overflow: hidden;
+  border: none !important;
+  box-shadow: 0 8px 48px rgba(26,86,219,.14) !important;
+}
+
+.login-left {
+  background: linear-gradient(160deg, #0f2d7a 0%, #1a56db 60%, #1e6ceb 100%);
+  border-radius: 1.5rem 0 0 1.5rem;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 420px;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,.05) 0%, transparent 50%);
+}
+
+.login-brand-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(255,255,255,.15);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.login-perk {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  color: rgba(255,255,255,.85);
+  font-size: .85rem;
+  padding: .4rem 0;
+}
+
+.login-perk-icon {
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,.12);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  flex-shrink: 0;
+}
+
+.login-right {
+  padding: 2.75rem 2.5rem;
+  background: #fff;
+  border-radius: 0 1.5rem 1.5rem 0;
+}
+
+.demo-btn {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  color: #374151 !important;
+  font-size: .82rem !important;
+  font-weight: 600 !important;
+  border-radius: .5rem !important;
+  padding: .45rem .9rem !important;
+  transition: all .18s !important;
+}
+
+.demo-btn:hover {
+  background: #eff6ff !important;
+  border-color: #bfdbfe !important;
+  color: #1a56db !important;
+}
+
+@media (max-width: 767px) {
+  .login-left { border-radius: 1.5rem 1.5rem 0 0; min-height: auto; padding: 2rem; }
+  .login-right { border-radius: 0 0 1.5rem 1.5rem; padding: 2rem 1.5rem; }
 }

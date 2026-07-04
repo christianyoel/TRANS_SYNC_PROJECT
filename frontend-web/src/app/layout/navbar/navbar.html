@@ -1,25 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-dark ts-navbar shadow-sm">
+<nav class="navbar navbar-expand-lg ts-navbar">
   <div class="container">
-    <a class="navbar-brand fw-bold" routerLink="/">
-      <span class="brand-icon">🚌</span> TRANS-SYNC
+
+    <!-- Brand -->
+    <a class="navbar-brand text-white" routerLink="/">
+      <div class="brand-logo">🚌</div>
+      TRANS-SYNC
     </a>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#mainNav"
-      aria-controls="mainNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="mainNav">
+
+      <!-- Links izquierda -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+          <a class="nav-link" routerLink="/" routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/buscar" routerLinkActive="active">Buscar Boleto</a>
@@ -28,51 +28,66 @@
           <a class="nav-link" routerLink="/viajes" routerLinkActive="active">Viajes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/seguimiento-encomienda" routerLinkActive="active">Seguimiento Envíos</a>
+          <a class="nav-link" routerLink="/seguimiento-encomienda" routerLinkActive="active">
+            Seguimiento
+          </a>
         </li>
+
         @if (auth.hasRole('COUNTER', 'ADMIN')) {
           <li class="nav-item">
-            <a class="nav-link" routerLink="/counter/vender" routerLinkActive="active">Vender Pasaje</a>
+            <a class="nav-link" routerLink="/counter/vender" routerLinkActive="active">
+              Vender Pasaje
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/counter/encomiendas" routerLinkActive="active">Encomiendas</a>
+            <a class="nav-link" routerLink="/counter/encomiendas" routerLinkActive="active">
+              Encomiendas
+            </a>
           </li>
         }
+
         @if (auth.hasRole('ADMIN')) {
           <li class="nav-item">
             <a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/admin/viajes" routerLinkActive="active">Admin Viajes</a>
+            <a class="nav-link" routerLink="/admin/viajes" routerLinkActive="active">Viajes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/admin/usuarios" routerLinkActive="active">Admin Usuarios</a>
+            <a class="nav-link" routerLink="/admin/usuarios" routerLinkActive="active">Usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/admin/encomiendas" routerLinkActive="active">Admin Encomiendas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/admin/auditoria" routerLinkActive="active">Auditoría</a>
+            <a class="nav-link" routerLink="/admin/encomiendas" routerLinkActive="active">
+              Admin Enc.
+            </a>
           </li>
         }
       </ul>
 
-      <ul class="navbar-nav ms-auto">
+      <!-- Derecha: usuario + logout -->
+      <ul class="navbar-nav ms-auto align-items-center gap-2">
         @if (auth.currentUser(); as user) {
           <li class="nav-item">
-            <a class="nav-link user-badge me-2" routerLink="/perfil" title="Ver perfil">
-              {{ user.nombres }} · <strong>{{ user.rol }}</strong>
+            <a class="user-info" routerLink="/perfil">
+              <div class="user-avatar">{{ user.nombres.charAt(0) }}</div>
+              <span class="d-none d-lg-inline">{{ user.nombres }}</span>
+              <span class="role-badge {{ user.rol.toLowerCase() }}">{{ user.rol }}</span>
             </a>
           </li>
           <li class="nav-item">
-            <button class="btn btn-outline-light btn-sm" (click)="logout()">Cerrar sesión</button>
+            <button class="btn btn-logout btn-sm" (click)="logout()">
+              Salir
+            </button>
           </li>
         } @else {
           <li class="nav-item">
-            <a class="btn btn-light btn-sm px-3" routerLink="/login">Iniciar sesión</a>
+            <a class="btn btn-light btn-sm px-4 fw-600" routerLink="/login">
+              Iniciar sesión
+            </a>
           </li>
         }
       </ul>
+
     </div>
   </div>
 </nav>
