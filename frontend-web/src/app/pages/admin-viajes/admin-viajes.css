@@ -1,0 +1,111 @@
+/* ══════════════════════════════════════════════════════
+   ADMIN VIAJES — Panel de gestión de rutas
+══════════════════════════════════════════════════════ */
+
+/* ── Page header ────────────────────────────────────── */
+.page-header h2 {
+  background: linear-gradient(135deg, #1e1b4b, #4338ca);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card header del formulario ─────────────────────── */
+.card-header.bg-primary {
+  background: linear-gradient(135deg, #312e81, #4338ca) !important;
+  font-weight: 700 !important;
+  font-size: .875rem !important;
+  letter-spacing: -.01em !important;
+  border-bottom: none !important;
+  padding: 1rem 1.5rem !important;
+}
+
+/* ── Card del listado ───────────────────────────────── */
+.card-header.bg-white {
+  background: #f8f9fd !important;
+  font-weight: 700 !important;
+  color: #312e81 !important;
+  border-bottom: 1px solid rgba(99,102,241,.1) !important;
+}
+
+/* ── Input datetime-local ───────────────────────────── */
+input[type="datetime-local"].form-control {
+  color: #374151;
+  cursor: pointer;
+}
+
+/* ── Tabla de viajes ────────────────────────────────── */
+.table td strong {
+  font-family: 'Plus Jakarta Sans', monospace;
+  font-size: .78rem;
+  font-weight: 800;
+  color: #4f46e5;
+  background: #eef2ff;
+  padding: .15rem .4rem;
+  border-radius: 4px;
+  letter-spacing: .02em;
+}
+
+/* Ruta */
+.table td:nth-child(2) {
+  font-weight: 600;
+  color: #1e1b4b;
+  font-size: .85rem;
+}
+
+/* Fecha */
+.table td:nth-child(3) {
+  color: #64748b;
+  font-size: .82rem;
+}
+
+/* Precio */
+.table td:nth-child(4) {
+  font-weight: 700;
+  color: #059669;
+  font-size: .88rem;
+}
+
+/* ── Botones de estado ──────────────────────────────── */
+.table .btn-outline-danger {
+  border-color: rgba(220,38,38,.3) !important;
+  color: #dc2626 !important;
+  font-size: .75rem !important;
+  padding: .28rem .6rem !important;
+  border-radius: .4rem !important;
+  font-weight: 700 !important;
+}
+
+.table .btn-outline-danger:hover {
+  background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 3px 10px rgba(220,38,38,.3) !important;
+}
+
+.table .btn-outline-success {
+  border-color: rgba(5,150,105,.3) !important;
+  color: #059669 !important;
+  font-size: .75rem !important;
+  padding: .28rem .6rem !important;
+  border-radius: .4rem !important;
+  font-weight: 700 !important;
+}
+
+.table .btn-outline-success:hover {
+  background: linear-gradient(135deg, #059669, #10b981) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 3px 10px rgba(5,150,105,.3) !important;
+}
+
+/* ── Badges de estado ───────────────────────────────── */
+.badge.bg-success {
+  background: linear-gradient(135deg, #059669, #10b981) !important;
+}
+.badge.bg-danger {
+  background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+}
+.badge.bg-secondary {
+  background: linear-gradient(135deg, #64748b, #94a3b8) !important;
+}

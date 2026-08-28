@@ -1,0 +1,122 @@
+/* ══════════════════════════════════════════════════════
+   ADMIN USUARIOS — Gestión de personal
+══════════════════════════════════════════════════════ */
+
+/* ── Page header ────────────────────────────────────── */
+.page-header h2 {
+  background: linear-gradient(135deg, #1e1b4b, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Card header formulario ─────────────────────────── */
+.card-header.bg-primary {
+  background: linear-gradient(135deg, #4c1d95, #7c3aed) !important;
+  font-weight: 700 !important;
+  font-size: .875rem !important;
+  letter-spacing: -.01em !important;
+  border-bottom: none !important;
+  padding: 1rem 1.5rem !important;
+}
+
+/* ── Card listado ───────────────────────────────────── */
+.card-header.bg-white {
+  background: #faf8ff !important;
+  font-weight: 700 !important;
+  color: #4c1d95 !important;
+  border-bottom: 1px solid rgba(124,58,237,.1) !important;
+}
+
+/* ── Select de rol ──────────────────────────────────── */
+.form-select {
+  cursor: pointer;
+}
+
+/* ── Filas inactivas ────────────────────────────────── */
+tr.table-secondary > td {
+  background: #fafafa !important;
+  opacity: .65;
+  border-color: #f3f4f6 !important;
+}
+
+/* ── Nombre del usuario ─────────────────────────────── */
+.table td:first-child {
+  font-weight: 700;
+  color: #1e1b4b;
+  font-size: .88rem;
+}
+
+/* ── Email ──────────────────────────────────────────── */
+.table td:nth-child(2) {
+  color: #64748b;
+  font-size: .82rem;
+}
+
+/* ── DNI ────────────────────────────────────────────── */
+.table td:nth-child(3) {
+  font-family: 'Plus Jakarta Sans', monospace;
+  font-size: .82rem;
+  font-weight: 600;
+  color: #374151;
+  letter-spacing: .04em;
+}
+
+/* ── Estado activo/inactivo ─────────────────────────── */
+.text-success {
+  color: #059669 !important;
+  font-weight: 700 !important;
+  font-size: .8rem !important;
+}
+
+.text-danger {
+  color: #dc2626 !important;
+  font-weight: 700 !important;
+  font-size: .8rem !important;
+}
+
+/* ── Fecha de registro ──────────────────────────────── */
+.table td:nth-child(6) {
+  color: #94a3b8;
+  font-size: .8rem;
+}
+
+/* ── Role badges ─────────────────────────────────────── */
+/* ADMIN */
+.badge.bg-danger {
+  background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+  font-size: .68rem !important;
+}
+/* COUNTER */
+.badge.bg-warning {
+  background: linear-gradient(135deg, #d97706, #f59e0b) !important;
+  color: #fff !important;
+  font-size: .68rem !important;
+}
+/* CONDUCTOR */
+.badge.bg-success {
+  background: linear-gradient(135deg, #059669, #10b981) !important;
+  font-size: .68rem !important;
+}
+/* Otros */
+.badge.bg-secondary {
+  background: linear-gradient(135deg, #64748b, #94a3b8) !important;
+  font-size: .68rem !important;
+}
+
+/* ── Botón desactivar ───────────────────────────────── */
+.table .btn-outline-danger {
+  border-color: rgba(220,38,38,.3) !important;
+  color: #dc2626 !important;
+  font-size: .75rem !important;
+  padding: .25rem .6rem !important;
+  border-radius: .4rem !important;
+  font-weight: 700 !important;
+}
+
+.table .btn-outline-danger:hover {
+  background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 3px 10px rgba(220,38,38,.3) !important;
+}

@@ -1,32 +1,228 @@
 <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-<section class="hero text-white text-center">
+<section class="hero text-white">
   <div class="container position-relative">
+    <div class="row align-items-center g-5">
 
-    <div class="hero-badge mb-4">
-      🚌 Sistema de Transporte Interprovincial
+      <!-- Texto lado izquierdo -->
+      <div class="col-lg-6 text-start">
+        <div class="hero-badge mb-4">
+          🚌 Sistema de Transporte Interprovincial
+        </div>
+
+        <h1 class="hero-title text-white mb-3">
+          TRANS<span style="color:#a5b4fc">-SYNC</span>
+        </h1>
+
+        <p class="hero-subtitle mb-5" style="opacity:.7">
+          Gestión integral de pasajes, viajes y encomiendas.<br>
+          Rutas Juliaca · Cusco · Puno · Arequipa · Lima y más.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3">
+          <a routerLink="/buscar" class="btn hero-btn-primary btn-lg">
+            🔍 Buscar mi boleto
+          </a>
+          <a routerLink="/viajes" class="btn hero-btn-secondary btn-lg">
+            📅 Ver viajes activos
+          </a>
+          <a routerLink="/seguimiento-encomienda" class="btn hero-btn-secondary btn-lg">
+            📦 Rastrear envío
+          </a>
+        </div>
+      </div>
+
+      <!-- Ilustración lado derecho -->
+      <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+        <div class="hero-illustration">
+          <!-- Bus SVG inline -->
+          <svg viewBox="0 0 520 340" fill="none" xmlns="http://www.w3.org/2000/svg"
+               class="bus-svg" aria-hidden="true">
+
+            <!-- Carretera -->
+            <rect x="0" y="290" width="520" height="50" rx="4" fill="rgba(255,255,255,.06)"/>
+            <rect x="40" y="313" width="60" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+            <rect x="140" y="313" width="60" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+            <rect x="240" y="313" width="60" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+            <rect x="340" y="313" width="60" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+            <rect x="440" y="313" width="40" height="6" rx="3" fill="rgba(255,255,255,.12)"/>
+
+            <!-- Sombra del bus -->
+            <ellipse cx="260" cy="296" rx="155" ry="8" fill="rgba(0,0,0,.25)"/>
+
+            <!-- Cuerpo del bus -->
+            <rect x="60" y="140" width="390" height="150" rx="20"
+                  fill="url(#busBody)"/>
+
+            <!-- Frente del bus (morro) -->
+            <path d="M450 155 Q470 155 475 175 L475 270 Q475 285 460 285 L450 285 Z"
+                  fill="url(#busFront)"/>
+
+            <!-- Parte trasera -->
+            <path d="M70 155 Q50 155 48 175 L48 270 Q48 282 62 285 L70 285 Z"
+                  fill="url(#busBack)"/>
+
+            <!-- Banda lateral decorativa -->
+            <rect x="60" y="195" width="390" height="4" rx="2"
+                  fill="rgba(165,180,252,.4)"/>
+            <rect x="60" y="230" width="390" height="2" rx="1"
+                  fill="rgba(255,255,255,.1)"/>
+
+            <!-- Ventanas del lado -->
+            <rect x="80" y="155" width="52" height="35" rx="7"
+                  fill="url(#window)" opacity=".9"/>
+            <rect x="145" y="155" width="52" height="35" rx="7"
+                  fill="url(#window)" opacity=".9"/>
+            <rect x="210" y="155" width="52" height="35" rx="7"
+                  fill="url(#window)" opacity=".9"/>
+            <rect x="275" y="155" width="52" height="35" rx="7"
+                  fill="url(#window)" opacity=".9"/>
+            <rect x="340" y="155" width="52" height="35" rx="7"
+                  fill="url(#window)" opacity=".9"/>
+            <rect x="405" y="155" width="38" height="35" rx="7"
+                  fill="url(#window)" opacity=".85"/>
+
+            <!-- Reflejo en ventanas -->
+            <rect x="82" y="157" width="14" height="10" rx="3"
+                  fill="rgba(255,255,255,.3)"/>
+            <rect x="147" y="157" width="14" height="10" rx="3"
+                  fill="rgba(255,255,255,.3)"/>
+            <rect x="212" y="157" width="14" height="10" rx="3"
+                  fill="rgba(255,255,255,.3)"/>
+            <rect x="277" y="157" width="14" height="10" rx="3"
+                  fill="rgba(255,255,255,.3)"/>
+            <rect x="342" y="157" width="14" height="10" rx="3"
+                  fill="rgba(255,255,255,.3)"/>
+
+            <!-- Parabrisas delantero -->
+            <rect x="410" y="152" width="42" height="38" rx="8"
+                  fill="url(#windshield)" opacity=".9"/>
+            <rect x="413" y="155" width="14" height="12" rx="3"
+                  fill="rgba(255,255,255,.25)"/>
+
+            <!-- Texto TRANS-SYNC en el bus -->
+            <rect x="110" y="248" width="220" height="26" rx="5"
+                  fill="rgba(255,255,255,.07)"/>
+            <text x="220" y="265" text-anchor="middle"
+                  font-family="system-ui, sans-serif"
+                  font-size="11" font-weight="800"
+                  fill="rgba(255,255,255,.5)"
+                  letter-spacing="3">TRANS-SYNC</text>
+
+            <!-- Puerta del bus -->
+            <rect x="355" y="235" width="36" height="50" rx="5"
+                  fill="rgba(0,0,0,.2)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+            <circle cx="385" cy="260" r="3" fill="rgba(255,255,255,.3)"/>
+
+            <!-- Ruedas -->
+            <!-- Rueda trasera -->
+            <circle cx="155" cy="291" r="36" fill="#0f0e23"/>
+            <circle cx="155" cy="291" r="28" fill="#1a1830"/>
+            <circle cx="155" cy="291" r="20" fill="#141225"/>
+            <circle cx="155" cy="291" r="12"
+                    fill="url(#wheelHub)"/>
+            <circle cx="155" cy="291" r="5" fill="#c7d2fe"/>
+            <!-- Pernos -->
+            <circle cx="155" cy="279" r="2.5" fill="#a5b4fc"/>
+            <circle cx="155" cy="303" r="2.5" fill="#a5b4fc"/>
+            <circle cx="143" cy="291" r="2.5" fill="#a5b4fc"/>
+            <circle cx="167" cy="291" r="2.5" fill="#a5b4fc"/>
+
+            <!-- Rueda delantera -->
+            <circle cx="385" cy="291" r="36" fill="#0f0e23"/>
+            <circle cx="385" cy="291" r="28" fill="#1a1830"/>
+            <circle cx="385" cy="291" r="20" fill="#141225"/>
+            <circle cx="385" cy="291" r="12"
+                    fill="url(#wheelHub)"/>
+            <circle cx="385" cy="291" r="5" fill="#c7d2fe"/>
+            <circle cx="385" cy="279" r="2.5" fill="#a5b4fc"/>
+            <circle cx="385" cy="303" r="2.5" fill="#a5b4fc"/>
+            <circle cx="373" cy="291" r="2.5" fill="#a5b4fc"/>
+            <circle cx="397" cy="291" r="2.5" fill="#a5b4fc"/>
+
+            <!-- Faros delanteros -->
+            <rect x="460" y="205" width="18" height="10" rx="5"
+                  fill="url(#headlight)"/>
+            <rect x="460" y="250" width="18" height="8" rx="4"
+                  fill="rgba(252,211,77,.7)"/>
+
+            <!-- Luces traseras -->
+            <rect x="50" y="210" width="12" height="10" rx="4"
+                  fill="rgba(239,68,68,.6)"/>
+            <rect x="50" y="248" width="12" height="8" rx="3"
+                  fill="rgba(239,68,68,.4)"/>
+
+            <!-- Montañas de fondo -->
+            <path d="M0 220 L60 140 L120 200 L180 120 L250 180 L320 100 L400 170 L460 130 L520 160 L520 220 Z"
+                  fill="rgba(255,255,255,.04)"/>
+            <path d="M0 230 L70 170 L130 210 L200 150 L280 200 L360 130 L440 180 L520 150 L520 230 Z"
+                  fill="rgba(255,255,255,.03)"/>
+
+            <!-- Nubes -->
+            <ellipse cx="80" cy="90" rx="35" ry="15"
+                     fill="rgba(255,255,255,.06)"/>
+            <ellipse cx="108" cy="84" rx="28" ry="18"
+                     fill="rgba(255,255,255,.05)"/>
+            <ellipse cx="55" cy="88" rx="20" ry="12"
+                     fill="rgba(255,255,255,.04)"/>
+
+            <ellipse cx="420" cy="70" rx="40" ry="16"
+                     fill="rgba(255,255,255,.06)"/>
+            <ellipse cx="450" cy="64" rx="30" ry="19"
+                     fill="rgba(255,255,255,.05)"/>
+            <ellipse cx="390" cy="68" rx="22" ry="13"
+                     fill="rgba(255,255,255,.04)"/>
+
+            <!-- Gradients definitions -->
+            <defs>
+              <linearGradient id="busBody" x1="60" y1="140" x2="60" y2="290" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4f46e5"/>
+                <stop offset="60%" stop-color="#3730a3"/>
+                <stop offset="100%" stop-color="#312e81"/>
+              </linearGradient>
+              <linearGradient id="busFront" x1="450" y1="140" x2="480" y2="290" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4338ca"/>
+                <stop offset="100%" stop-color="#2e2776"/>
+              </linearGradient>
+              <linearGradient id="busBack" x1="48" y1="140" x2="70" y2="290" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4338ca"/>
+                <stop offset="100%" stop-color="#2e2776"/>
+              </linearGradient>
+              <linearGradient id="window" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                <stop offset="0%" stop-color="#bfdbfe"/>
+                <stop offset="100%" stop-color="#93c5fd"/>
+              </linearGradient>
+              <linearGradient id="windshield" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                <stop offset="0%" stop-color="#bfdbfe"/>
+                <stop offset="100%" stop-color="#7dd3fc"/>
+              </linearGradient>
+              <radialGradient id="wheelHub" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#4f46e5"/>
+                <stop offset="100%" stop-color="#1e1b4b"/>
+              </radialGradient>
+              <linearGradient id="headlight" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+                <stop offset="0%" stop-color="#fef3c7"/>
+                <stop offset="100%" stop-color="#fde68a"/>
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <!-- Etiqueta flotante de ruta -->
+          <div class="route-label">
+            <span class="route-dot"></span>
+            Juliaca → Cusco · 06:30 AM
+          </div>
+
+          <!-- Etiqueta flotante de asientos -->
+          <div class="seats-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M4 18v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+            </svg>
+            7 asientos disponibles
+          </div>
+        </div>
+      </div>
+
     </div>
-
-    <h1 class="hero-title text-white mb-3">
-      TRANS<span style="color:#93c5fd">-SYNC</span>
-    </h1>
-
-    <p class="hero-subtitle mb-5 text-white-50 mx-auto">
-      Gestión integral de pasajes, viajes y encomiendas.<br>
-      Rutas Juliaca · Cusco · Puno · Arequipa · Lima y más.
-    </p>
-
-    <div class="d-flex flex-wrap justify-content-center gap-3">
-      <a routerLink="/buscar" class="btn hero-btn-primary btn-lg">
-        🔍 Buscar mi boleto
-      </a>
-      <a routerLink="/viajes" class="btn hero-btn-secondary btn-lg">
-        📅 Ver viajes activos
-      </a>
-      <a routerLink="/seguimiento-encomienda" class="btn hero-btn-secondary btn-lg">
-        📦 Rastrear envío
-      </a>
-    </div>
-
   </div>
 </section>
 

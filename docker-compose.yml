@@ -1,0 +1,135 @@
+version: '3.8'
+
+# ══════════════════════════════════════════════════════════════════════════
+# TRANS-SYNC — Docker Compose
+# Levanta un contenedor PostgreSQL por cada microservicio.
+# Uso: docker compose up -d
+# Para detener: docker compose down
+# Para eliminar datos: docker compose down -v
+# ══════════════════════════════════════════════════════════════════════════
+
+services:
+
+  # ── ms-usuarios ──────────────────────────────────────────────────────────
+  db-usuarios:
+    image: postgres:16-alpine
+    container_name: trans_sync_db_usuarios
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: trans_sync_bd_usuarios
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "123456"
+    ports:
+      - "5433:5432"
+    volumes:
+      - vol_usuarios:/var/lib/postgresql/data
+    networks:
+      - trans_sync_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d trans_sync_bd_usuarios"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── ms-pasajes ────────────────────────────────────────────────────────────
+  db-pasajes:
+    image: postgres:16-alpine
+    container_name: trans_sync_db_pasajes
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: trans_sync_bd_pasajes
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "123456"
+    ports:
+      - "5434:5432"
+    volumes:
+      - vol_pasajes:/var/lib/postgresql/data
+    networks:
+      - trans_sync_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d trans_sync_bd_pasajes"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── ms-viajes ─────────────────────────────────────────────────────────────
+  db-viajes:
+    image: postgres:16-alpine
+    container_name: trans_sync_db_viajes
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: trans_sync_bd_viajes
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "123456"
+    ports:
+      - "5435:5432"
+    volumes:
+      - vol_viajes:/var/lib/postgresql/data
+    networks:
+      - trans_sync_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d trans_sync_bd_viajes"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── ms-encomiendas ────────────────────────────────────────────────────────
+  db-encomiendas:
+    image: postgres:16-alpine
+    container_name: trans_sync_db_encomiendas
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: trans_sync_bd_encomiendas
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "123456"
+    ports:
+      - "5436:5432"
+    volumes:
+      - vol_encomiendas:/var/lib/postgresql/data
+    networks:
+      - trans_sync_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d trans_sync_bd_encomiendas"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── ms-auditoria ──────────────────────────────────────────────────────────
+  db-auditoria:
+    image: postgres:16-alpine
+    container_name: trans_sync_db_auditoria
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: trans_sync_bd_auditoria
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "123456"
+    ports:
+      - "5437:5432"
+    volumes:
+      - vol_auditoria:/var/lib/postgresql/data
+    networks:
+      - trans_sync_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d trans_sync_bd_auditoria"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+# ── Volúmenes persistentes ─────────────────────────────────────────────────
+volumes:
+  vol_usuarios:
+    name: trans_sync_vol_usuarios
+  vol_pasajes:
+    name: trans_sync_vol_pasajes
+  vol_viajes:
+    name: trans_sync_vol_viajes
+  vol_encomiendas:
+    name: trans_sync_vol_encomiendas
+  vol_auditoria:
+    name: trans_sync_vol_auditoria
+
+# ── Red compartida ─────────────────────────────────────────────────────────
+networks:
+  trans_sync_net:
+    name: trans_sync_network
+    driver: bridge

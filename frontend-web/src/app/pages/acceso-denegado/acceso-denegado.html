@@ -1,6 +1,90 @@
 <div class="container py-5 text-center">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-7 col-lg-6">
+
+      <!-- Ilustración SVG 403 -->
+      <div class="error-illustration mb-4">
+        <svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg"
+             aria-hidden="true" style="width:100%;max-width:420px">
+
+          <!-- Número 403 de fondo -->
+          <text x="240" y="185" text-anchor="middle"
+                font-family="system-ui, sans-serif"
+                font-size="140" font-weight="900"
+                fill="#fee2e2" letter-spacing="-8">403</text>
+
+          <!-- Puerta cerrada / candado central -->
+          <g transform="translate(180, 60)">
+            <!-- Marco de puerta -->
+            <rect x="0" y="0" width="120" height="160" rx="10"
+                  fill="#1e1b4b" stroke="#312e81" stroke-width="3"/>
+            <!-- Puerta interna -->
+            <rect x="8" y="8" width="104" height="144" rx="7"
+                  fill="#312e81"/>
+            <!-- Panel de madera -->
+            <rect x="16" y="16" width="40" height="55" rx="5"
+                  fill="rgba(255,255,255,.06)"/>
+            <rect x="64" y="16" width="40" height="55" rx="5"
+                  fill="rgba(255,255,255,.06)"/>
+            <rect x="16" y="80" width="88" height="65" rx="5"
+                  fill="rgba(255,255,255,.05)"/>
+
+            <!-- Candado -->
+            <g transform="translate(42, 100)">
+              <!-- Arco del candado -->
+              <path d="M6 28 L6 18 Q6 4 18 4 Q30 4 30 18 L30 28"
+                    stroke="#ef4444" stroke-width="5" stroke-linecap="round"
+                    fill="none"/>
+              <!-- Cuerpo del candado -->
+              <rect x="0" y="26" width="36" height="28" rx="7"
+                    fill="#dc2626"/>
+              <!-- Cerradura -->
+              <circle cx="18" cy="37" r="5" fill="#fca5a5"/>
+              <rect x="16" y="37" width="4" height="8" rx="2"
+                    fill="#fca5a5"/>
+            </g>
+          </g>
+
+          <!-- Escudo de seguridad a la derecha -->
+          <g transform="translate(330, 80)">
+            <path d="M40 0 L80 15 L80 55 Q80 85 40 100 Q0 85 0 55 L0 15 Z"
+                  fill="#dc2626" opacity=".9"/>
+            <path d="M40 10 L72 22 L72 57 Q72 80 40 92 Q8 80 8 57 L8 22 Z"
+                  fill="#ef4444"/>
+            <!-- X en el escudo -->
+            <line x1="24" y1="38" x2="56" y2="68" stroke="#fff" stroke-width="5"
+                  stroke-linecap="round"/>
+            <line x1="56" y1="38" x2="24" y2="68" stroke="#fff" stroke-width="5"
+                  stroke-linecap="round"/>
+          </g>
+
+          <!-- Persona rechazada a la izquierda -->
+          <g transform="translate(55, 90)">
+            <!-- Cabeza -->
+            <circle cx="35" cy="20" r="18" fill="#fde68a"/>
+            <!-- Cuerpo -->
+            <path d="M15 40 Q20 38 35 38 Q50 38 55 40 L60 90 L10 90 Z"
+                  fill="#4f46e5"/>
+            <!-- Manos levantadas (confusión) -->
+            <path d="M10 55 Q0 40 5 30" stroke="#fde68a" stroke-width="5"
+                  stroke-linecap="round" fill="none"/>
+            <path d="M60 55 Q70 40 65 30" stroke="#fde68a" stroke-width="5"
+                  stroke-linecap="round" fill="none"/>
+            <!-- Cara confundida -->
+            <circle cx="28" cy="18" r="3" fill="#92400e"/>
+            <circle cx="42" cy="18" r="3" fill="#92400e"/>
+            <path d="M27 30 Q35 25 43 30" stroke="#92400e" stroke-width="2"
+                  stroke-linecap="round" fill="none"/>
+          </g>
+
+          <!-- Signos de stop -->
+          <text x="90" y="85" font-size="20" fill="#fca5a5" font-weight="800"
+                opacity=".7">✕</text>
+          <text x="390" y="200" font-size="16" fill="#fca5a5" font-weight="800"
+                opacity=".5">✕</text>
+        </svg>
+      </div>
+
       <div class="display-1 fw-bold text-danger mb-3">403</div>
       <h2 class="fw-semibold mb-2">Acceso denegado</h2>
       <p class="text-muted mb-4">

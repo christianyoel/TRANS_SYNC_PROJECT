@@ -1,8 +1,141 @@
+/* ══════════════════════════════════════════════════════
+   VIAJES — Cards de ruta con identidad de transporte
+══════════════════════════════════════════════════════ */
+
+/* ── Page header ────────────────────────────────────── */
+.page-header h2 {
+  background: linear-gradient(135deg, #1e1b4b, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Viaje card ─────────────────────────────────────── */
 .viaje-card {
-  border-radius: 1rem;
-  transition: transform 0.2s ease;
+  border-radius: 1.1rem !important;
+  border: 1px solid rgba(0,0,0,.07) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Línea superior de color al hover */
+.viaje-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6, #06b6d4);
+  opacity: 0;
+  transition: opacity .25s;
 }
 
 .viaje-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(30,27,75,.1), 0 4px 12px rgba(79,70,229,.07) !important;
+  border-color: rgba(99,102,241,.2) !important;
+}
+
+.viaje-card:hover::before { opacity: 1; }
+
+/* Card body */
+.viaje-card .card-body {
+  padding: 1.4rem 1.5rem !important;
+}
+
+/* Número de viaje */
+.viaje-card .text-primary {
+  font-size: .75rem !important;
+  font-weight: 800 !important;
+  letter-spacing: .06em;
+  color: #6366f1 !important;
+  background: #eef2ff;
+  padding: .2rem .6rem;
+  border-radius: 5px;
+}
+
+/* Ruta origen → destino */
+.viaje-card h5 {
+  font-weight: 800 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: -.02em;
+  color: #1e1b4b !important;
+  margin: .75rem 0 .5rem !important;
+}
+
+/* Hora de salida */
+.viaje-card .text-muted small {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  color: #94a3b8 !important;
+  font-weight: 500;
+  font-size: .82rem;
+}
+
+/* Precio */
+.viaje-card .text-success {
+  font-size: 1.2rem !important;
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, #059669, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Capacidad */
+.viaje-card .text-muted.small {
+  font-size: .78rem !important;
+  color: #94a3b8 !important;
+  font-weight: 500;
+}
+
+/* Footer de la card */
+.viaje-card .card-footer {
+  background: #fafafa !important;
+  border-top: 1px solid rgba(0,0,0,.05) !important;
+  padding: .85rem 1.25rem 1.1rem !important;
+  border-radius: 0 0 1.1rem 1.1rem !important;
+}
+
+.viaje-card .btn-outline-primary {
+  border-color: rgba(79,70,229,.3) !important;
+  color: #4f46e5 !important;
+  font-size: .8rem !important;
+  font-weight: 700 !important;
+  border-radius: .6rem !important;
+  transition: all .18s !important;
+}
+
+.viaje-card .btn-outline-primary:hover {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(79,70,229,.3) !important;
+  transform: none !important;
+}
+
+/* ── Badges de estado ───────────────────────────────── */
+.badge.bg-success {
+  background: linear-gradient(135deg, #059669, #10b981) !important;
+  font-size: .67rem !important;
+  letter-spacing: .05em;
+}
+
+.badge.bg-danger {
+  background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+  font-size: .67rem !important;
+}
+
+.badge.bg-secondary {
+  background: #94a3b8 !important;
+  font-size: .67rem !important;
+}
+
+/* ── Alert info ─────────────────────────────────────── */
+.alert-info {
+  background: linear-gradient(135deg, #eef2ff, #f5f3ff) !important;
+  border-left: 3px solid #6366f1 !important;
+  color: #4338ca !important;
 }

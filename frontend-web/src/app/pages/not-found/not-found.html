@@ -1,6 +1,76 @@
 <div class="container py-5 text-center">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-7 col-lg-6">
+
+      <!-- Ilustración SVG 404 -->
+      <div class="error-illustration mb-4">
+        <svg viewBox="0 0 480 300" fill="none" xmlns="http://www.w3.org/2000/svg"
+             aria-hidden="true" style="width:100%;max-width:420px">
+
+          <!-- Fondo de carretera -->
+          <rect x="0" y="240" width="480" height="60" rx="4" fill="#f0f4f8"/>
+          <!-- Líneas de carretera -->
+          <rect x="20" y="268" width="40" height="5" rx="2" fill="#cbd5e1"/>
+          <rect x="100" y="268" width="40" height="5" rx="2" fill="#cbd5e1"/>
+          <rect x="180" y="268" width="40" height="5" rx="2" fill="#cbd5e1"/>
+          <rect x="260" y="268" width="40" height="5" rx="2" fill="#cbd5e1"/>
+          <rect x="340" y="268" width="40" height="5" rx="2" fill="#cbd5e1"/>
+          <rect x="420" y="268" width="40" height="5" rx="2" fill="#cbd5e1"/>
+
+          <!-- Bus perdido / roto -->
+          <g transform="translate(140, 140)" opacity=".9">
+            <!-- Cuerpo inclinado -->
+            <g transform="rotate(-12, 100, 80)">
+              <rect x="10" y="20" width="180" height="80" rx="12" fill="#4f46e5"/>
+              <rect x="10" y="40" width="180" height="3" rx="1" fill="rgba(255,255,255,.3)"/>
+              <!-- Ventanas -->
+              <rect x="20" y="28" width="28" height="18" rx="5" fill="#bfdbfe" opacity=".8"/>
+              <rect x="58" y="28" width="28" height="18" rx="5" fill="#bfdbfe" opacity=".8"/>
+              <rect x="96" y="28" width="28" height="18" rx="5" fill="#bfdbfe" opacity=".8"/>
+              <rect x="134" y="28" width="28" height="18" rx="5" fill="#bfdbfe" opacity=".8"/>
+              <!-- Parabrisas -->
+              <rect x="162" y="26" width="24" height="20" rx="5" fill="#93c5fd"/>
+              <!-- Ruedas caídas -->
+              <circle cx="45" cy="102" r="18" fill="#1e1b4b"/>
+              <circle cx="45" cy="102" r="11" fill="#312e81"/>
+              <circle cx="45" cy="102" r="5" fill="#6366f1"/>
+              <circle cx="155" cy="102" r="18" fill="#1e1b4b"/>
+              <circle cx="155" cy="102" r="11" fill="#312e81"/>
+              <circle cx="155" cy="102" r="5" fill="#6366f1"/>
+            </g>
+          </g>
+
+          <!-- Número 404 gigante detrás -->
+          <text x="240" y="185" text-anchor="middle"
+                font-family="system-ui, sans-serif"
+                font-size="140" font-weight="900"
+                fill="#e0e7ff" letter-spacing="-8">404</text>
+
+          <!-- Señal de ruta equivocada -->
+          <g transform="translate(340, 90)">
+            <rect x="0" y="0" width="6" height="90" rx="3" fill="#94a3b8"/>
+            <rect x="-30" y="10" width="65" height="30" rx="6" fill="#ef4444"/>
+            <text x="2" y="30" text-anchor="middle"
+                  font-family="system-ui, sans-serif"
+                  font-size="13" font-weight="800"
+                  fill="#fff">¿Aquí?</text>
+            <rect x="-24" y="45" width="52" height="28" rx="6" fill="#94a3b8"/>
+            <text x="2" y="62" text-anchor="middle"
+                  font-family="system-ui, sans-serif"
+                  font-size="11" font-weight="700"
+                  fill="#fff">No existe</text>
+          </g>
+
+          <!-- Signos de interrogación flotantes -->
+          <text x="80" y="100" font-size="28" fill="#c7d2fe" font-weight="800"
+                opacity=".6" style="animation: float1 3s ease-in-out infinite">?</text>
+          <text x="400" y="130" font-size="22" fill="#c7d2fe" font-weight="800"
+                opacity=".5">?</text>
+          <text x="55" y="180" font-size="18" fill="#e0e7ff" font-weight="800"
+                opacity=".4">!</text>
+        </svg>
+      </div>
+
       <div class="display-1 fw-bold text-primary mb-3">404</div>
       <h2 class="fw-semibold mb-2">Página no encontrada</h2>
       <p class="text-muted mb-4">
