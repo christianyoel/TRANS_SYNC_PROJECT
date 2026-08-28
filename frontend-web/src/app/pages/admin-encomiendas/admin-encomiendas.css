@@ -1,14 +1,109 @@
-/* Fila en modo edición */
+/* ══════════════════════════════════════════════════════
+   ADMIN ENCOMIENDAS — Panel de gestión premium
+══════════════════════════════════════════════════════ */
+
+/* ── Card header del formulario ─────────────────────── */
+.card-header.bg-primary {
+  background: linear-gradient(135deg, #312e81, #4f46e5) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: .875rem !important;
+  letter-spacing: -.01em !important;
+  border-bottom: none !important;
+  padding: 1rem 1.5rem !important;
+}
+
+/* ── Barra de herramientas ──────────────────────────── */
+.card-header.bg-white {
+  background: var(--gray-50) !important;
+  border-bottom: 1px solid var(--gray-100) !important;
+}
+
+/* ── Fila en modo edición ───────────────────────────── */
+tr.table-warning > td {
+  background: #fffbeb !important;
+  border-color: #fde68a !important;
+  padding: .6rem .75rem !important;
+}
+
 tr.table-warning input.form-control-sm {
-  min-width: 90px;
+  min-width: 88px;
+  border-radius: .4rem !important;
+  font-size: .8rem !important;
+  padding: .28rem .5rem !important;
+  border: 1.5px solid #fcd34d !important;
+  background: #fff !important;
 }
 
-/* Columna de acciones: evita que los botones rompan el layout */
-td:last-child {
-  white-space: nowrap;
+tr.table-warning input.form-control-sm:focus {
+  border-color: var(--p-400) !important;
+  box-shadow: 0 0 0 2px rgba(79,70,229,.15) !important;
 }
 
-/* Header de la card */
-.card-header {
-  font-size: 0.95rem;
+/* ── Columna de acciones ────────────────────────────── */
+td:last-child { white-space: nowrap; }
+
+/* ── Botones de acción en tabla ─────────────────────── */
+.table td .btn-sm {
+  font-size: .72rem !important;
+  padding: .25rem .55rem !important;
+  border-radius: .4rem !important;
+  font-weight: 600 !important;
+}
+
+/* ── Badges de estado mejorados ─────────────────────── */
+.badge.bg-primary {
+  background: linear-gradient(135deg, #4f46e5, #6366f1) !important;
+  box-shadow: 0 1px 4px rgba(79,70,229,.3);
+}
+
+.badge.bg-warning {
+  background: linear-gradient(135deg, #d97706, #f59e0b) !important;
+  color: #fff !important;
+  box-shadow: 0 1px 4px rgba(217,119,6,.3);
+}
+
+.badge.bg-success {
+  background: linear-gradient(135deg, #059669, #10b981) !important;
+  box-shadow: 0 1px 4px rgba(5,150,105,.3);
+}
+
+.badge.bg-danger {
+  background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+  box-shadow: 0 1px 4px rgba(220,38,38,.3);
+}
+
+/* ── Input groups del toolbar ───────────────────────── */
+.card-header .input-group-sm .form-control,
+.card-header .input-group-sm .form-select {
+  font-size: .8rem !important;
+  padding: .32rem .65rem !important;
+  border-radius: .4rem 0 0 .4rem !important;
+}
+
+.card-header .input-group-sm .btn {
+  font-size: .78rem !important;
+  padding: .32rem .65rem !important;
+  border-radius: 0 .4rem .4rem 0 !important;
+}
+
+/* ── Columna ID ─────────────────────────────────────── */
+.table td:first-child strong {
+  font-size: .8rem;
+  color: var(--gray-400);
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+/* ── Paginación al pie de la tabla ─────────────────── */
+.card-footer {
+  background: var(--gray-50) !important;
+  border-top: 1px solid var(--gray-100) !important;
+}
+
+/* ── Texto "Finalizada" ─────────────────────────────── */
+.text-muted.small {
+  font-size: .75rem;
+  color: var(--gray-400) !important;
+  font-style: italic;
 }

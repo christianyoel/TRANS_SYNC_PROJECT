@@ -100,6 +100,10 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
                 return true;
             }
         }
+        // Auditoría: solo ADMIN puede acceder
+        if (path.startsWith("/api/auditoria")) {
+            return true;
+        }
         return false;
     }
 

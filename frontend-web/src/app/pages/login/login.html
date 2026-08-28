@@ -1,43 +1,107 @@
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-7">
-      <div class="card shadow border-0 login-card">
-        <div class="card-header bg-primary text-white text-center py-4">
-          <h4 class="mb-1">🔐 Acceso TRANS-SYNC</h4>
-          <p class="mb-0 small opacity-75">Counter · Admin · Conductor</p>
-        </div>
-        <div class="card-body p-4">
-          <form (ngSubmit)="iniciarSesion()">
-            <div class="mb-3">
-              <label class="form-label fw-semibold">Email</label>
-              <input type="email" class="form-control form-control-lg" [(ngModel)]="email" name="email" placeholder="usuario@trans-sync.com" required />
+<div class="login-page container">
+  <div class="row justify-content-center w-100">
+    <div class="col-lg-9 col-xl-8">
+
+      <div class="card login-card">
+        <div class="row g-0">
+
+          <!-- ── Panel izquierdo (decorativo) ─────────────────────────────── -->
+          <div class="col-md-5 login-left position-relative">
+            <div class="position-relative">
+              <div class="login-brand-icon">🚌</div>
+              <h3 class="fw-800 text-white mb-1" style="font-weight:800; letter-spacing:-.02em">
+                TRANS-SYNC
+              </h3>
+              <p class="text-white-50 mb-4" style="font-size:.9rem">
+                Sistema de Gestión de Transporte
+              </p>
+
+              <div class="d-flex flex-column gap-1">
+                <div class="login-perk">
+                  <div class="login-perk-icon">🎫</div>
+                  Venta y control de pasajes
+                </div>
+                <div class="login-perk">
+                  <div class="login-perk-icon">📦</div>
+                  Gestión de encomiendas
+                </div>
+                <div class="login-perk">
+                  <div class="login-perk-icon">🔐</div>
+                  Acceso seguro con JWT
+                </div>
+                <div class="login-perk">
+                  <div class="login-perk-icon">📊</div>
+                  Dashboard en tiempo real
+                </div>
+              </div>
             </div>
-            <div class="mb-4">
-              <label class="form-label fw-semibold">Contraseña</label>
-              <input type="password" class="form-control form-control-lg" [(ngModel)]="password" name="password" placeholder="••••••••" required />
-            </div>
-
-            @if (mensajeError) {
-              <div class="alert alert-danger">{{ mensajeError }}</div>
-            }
-
-            <button type="submit" class="btn btn-primary btn-lg w-100" [disabled]="cargando">
-              @if (cargando) {
-                <span class="spinner-border spinner-border-sm me-2"></span>
-              }
-              Ingresar
-            </button>
-          </form>
-
-          <hr class="my-4" />
-
-          <p class="text-muted small mb-2">Cuentas demo:</p>
-          <div class="d-flex gap-2">
-            <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" (click)="usarDemo('admin')">Admin demo</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm flex-fill" (click)="usarDemo('counter')">Counter demo</button>
           </div>
+
+          <!-- ── Panel derecho (formulario) ───────────────────────────────── -->
+          <div class="col-md-7 login-right">
+            <h4 class="fw-bold mb-1" style="letter-spacing:-.02em">Iniciar sesión</h4>
+            <p class="text-muted mb-4" style="font-size:.88rem">
+              Ingresa con tu cuenta de Counter, Admin o Conductor
+            </p>
+
+            <form (ngSubmit)="iniciarSesion()">
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email"
+                       class="form-control form-control-lg"
+                       [(ngModel)]="email"
+                       name="email"
+                       placeholder="usuario@trans-sync.com"
+                       required />
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label">Contraseña</label>
+                <input type="password"
+                       class="form-control form-control-lg"
+                       [(ngModel)]="password"
+                       name="password"
+                       placeholder="••••••••"
+                       required />
+              </div>
+
+              @if (mensajeError) {
+                <div class="alert alert-danger py-2 mb-3">
+                  ⚠️ {{ mensajeError }}
+                </div>
+              }
+
+              <button type="submit" class="btn btn-primary btn-lg w-100 mb-3"
+                      [disabled]="cargando">
+                @if (cargando) {
+                  <span class="spinner-border spinner-border-sm me-2"></span>
+                  Verificando...
+                } @else {
+                  Ingresar al sistema
+                }
+              </button>
+            </form>
+
+            <hr class="my-3" style="border-color:#f1f5f9" />
+
+            <p class="mb-2" style="font-size:.8rem; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:.06em">
+              Cuentas demo
+            </p>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn demo-btn flex-fill"
+                      (click)="usarDemo('admin')">
+                🔴 Admin
+              </button>
+              <button type="button" class="btn demo-btn flex-fill"
+                      (click)="usarDemo('counter')">
+                🟡 Counter
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
+
     </div>
   </div>
 </div>

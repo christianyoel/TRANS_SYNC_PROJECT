@@ -4,6 +4,7 @@ import com.synergy6.ms_encomiendas.dto.EncomiendaEstadoRequest;
 import com.synergy6.ms_encomiendas.dto.EncomiendaRequest;
 import com.synergy6.ms_encomiendas.dto.EncomiendaResponse;
 import com.synergy6.ms_encomiendas.dto.PageResponse;
+import com.synergy6.ms_encomiendas.dto.ResumenEncomiendas;
 import com.synergy6.ms_encomiendas.model.EstadoEncomienda;
 import com.synergy6.ms_encomiendas.service.EncomiendaService;
 import jakarta.validation.Valid;
@@ -22,6 +23,15 @@ public class EncomiendaController {
     private final EncomiendaService encomiendaService;
 
     // ── Lectura ───────────────────────────────────────────────────────────────
+
+    /**
+     * GET /api/encomiendas/resumen
+     * Conteos por estado para el Dashboard. Solo ADMIN (requiere token).
+     */
+    @GetMapping("/resumen")
+    public ResponseEntity<ResumenEncomiendas> resumen() {
+        return ResponseEntity.ok(encomiendaService.resumen());
+    }
 
     /**
      * GET /api/encomiendas?page=0&size=10

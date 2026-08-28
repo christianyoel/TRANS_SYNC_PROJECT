@@ -1,0 +1,181 @@
+/* ══════════════════════════════════════════════════════
+   DASHBOARD — Stat cards con gradientes expresivos
+══════════════════════════════════════════════════════ */
+
+/* ── Stat cards ─────────────────────────────────────── */
+.stat-card {
+  border-radius: 1.1rem;
+  padding: 1.4rem 1.4rem 1.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s cubic-bezier(.4,0,.2,1), box-shadow .2s;
+  cursor: default;
+  border: none !important;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px) scale(1.01);
+}
+
+/* Círculo decorativo en esquina */
+.stat-card::before {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  bottom: -24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.07);
+}
+
+/* Gradientes únicos por tipo — nada de azul genérico */
+.stat-card.total {
+  background: linear-gradient(145deg, #312e81 0%, #4f46e5 100%);
+  box-shadow: 0 8px 24px rgba(79,70,229,.35);
+  color: #fff;
+}
+.stat-card.total:hover { box-shadow: 0 14px 36px rgba(79,70,229,.45); }
+
+.stat-card.registrada {
+  background: linear-gradient(145deg, #1e40af 0%, #3b82f6 100%);
+  box-shadow: 0 8px 24px rgba(59,130,246,.3);
+  color: #fff;
+}
+.stat-card.registrada:hover { box-shadow: 0 14px 36px rgba(59,130,246,.42); }
+
+.stat-card.transito {
+  background: linear-gradient(145deg, #92400e 0%, #d97706 60%, #f59e0b 100%);
+  box-shadow: 0 8px 24px rgba(217,119,6,.32);
+  color: #fff;
+}
+.stat-card.transito:hover { box-shadow: 0 14px 36px rgba(217,119,6,.44); }
+
+.stat-card.entregada {
+  background: linear-gradient(145deg, #065f46 0%, #059669 60%, #10b981 100%);
+  box-shadow: 0 8px 24px rgba(5,150,105,.3);
+  color: #fff;
+}
+.stat-card.entregada:hover { box-shadow: 0 14px 36px rgba(5,150,105,.42); }
+
+.stat-card.cancelada {
+  background: linear-gradient(145deg, #7f1d1d 0%, #dc2626 60%, #ef4444 100%);
+  box-shadow: 0 8px 24px rgba(220,38,38,.3);
+  color: #fff;
+}
+.stat-card.cancelada:hover { box-shadow: 0 14px 36px rgba(220,38,38,.42); }
+
+.stat-card.viajes {
+  background: linear-gradient(145deg, #4c1d95 0%, #7c3aed 60%, #8b5cf6 100%);
+  box-shadow: 0 8px 24px rgba(124,58,237,.3);
+  color: #fff;
+}
+.stat-card.viajes:hover { box-shadow: 0 14px 36px rgba(124,58,237,.42); }
+
+.stat-card.activos {
+  background: linear-gradient(145deg, #0e7490 0%, #0891b2 60%, #06b6d4 100%);
+  box-shadow: 0 8px 24px rgba(8,145,178,.3);
+  color: #fff;
+}
+.stat-card.activos:hover { box-shadow: 0 14px 36px rgba(8,145,178,.42); }
+
+/* ── Partes internas ────────────────────────────────── */
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,.18);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: .85rem;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,.15);
+}
+
+.stat-value {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -.05em;
+  line-height: 1;
+  margin-bottom: .2rem;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 3px rgba(0,0,0,.15);
+}
+
+.stat-label {
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  opacity: .78;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Quick access cards ─────────────────────────────── */
+.quick-card {
+  border-radius: 1.1rem !important;
+  border: 1.5px solid var(--gray-200) !important;
+  text-decoration: none !important;
+  color: var(--gray-800) !important;
+  background: var(--white) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: all .22s cubic-bezier(.4,0,.2,1) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.quick-card:hover {
+  border-color: rgba(99,102,241,.3) !important;
+  background: linear-gradient(145deg, #f5f3ff, #eef2ff) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(99,102,241,.12) !important;
+  color: var(--p-700) !important;
+}
+
+.quick-icon {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: .85rem;
+  transition: transform .2s;
+  border: 1px solid rgba(99,102,241,.12);
+}
+
+.quick-card:hover .quick-icon {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+}
+
+.quick-card .fw-600 {
+  font-weight: 700;
+  font-size: .9rem;
+  letter-spacing: -.01em;
+  margin-bottom: .2rem;
+}
+
+.quick-card small { font-size: .75rem; }

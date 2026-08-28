@@ -1,0 +1,98 @@
+/* ══════════════════════════════════════════════════════
+   403 — Acceso denegado, tono rojo dramático
+══════════════════════════════════════════════════════ */
+
+.container.py-5 {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+}
+
+/* Número 403 */
+.display-1.fw-bold.text-danger {
+  font-size: 8rem !important;
+  font-weight: 900 !important;
+  background: linear-gradient(135deg, #dc2626 0%, #f97316 60%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  letter-spacing: -.06em;
+  filter: drop-shadow(0 4px 24px rgba(220,38,38,.22));
+  position: relative;
+}
+
+.display-1.fw-bold.text-danger::after {
+  content: '403';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11rem;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(220,38,38,.05);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: -1;
+}
+
+h2.fw-semibold {
+  font-weight: 800 !important;
+  font-size: 1.5rem !important;
+  letter-spacing: -.03em;
+  color: #1e1b4b;
+  margin-bottom: .5rem !important;
+}
+
+p.text-muted {
+  color: #94a3b8 !important;
+  font-size: .95rem;
+  max-width: 360px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.btn.btn-outline-secondary.me-2 {
+  border: 1.5px solid #e5e7eb !important;
+  color: #6b7280 !important;
+  font-weight: 600 !important;
+  border-radius: .75rem !important;
+  padding: .6rem 1.5rem !important;
+}
+
+.btn.btn-outline-secondary.me-2:hover {
+  background: #f9fafb !important;
+  border-color: #d1d5db !important;
+}
+
+.btn.btn-primary {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+  border: none !important;
+  padding: .65rem 1.5rem !important;
+  font-weight: 700 !important;
+  border-radius: .75rem !important;
+  box-shadow: 0 4px 14px rgba(79,70,229,.3) !important;
+}
+
+.btn.btn-primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(79,70,229,.4) !important;
+}
+
+/* ── Ilustración SVG ────────────────────────────────── */
+.error-illustration {
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(0 12px 32px rgba(220,38,38,.1));
+}
+
+.error-illustration svg {
+  animation: illustFloat 4s ease-in-out infinite;
+}
+
+@keyframes illustFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}

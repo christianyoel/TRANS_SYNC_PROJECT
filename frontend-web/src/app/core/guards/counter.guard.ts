@@ -3,10 +3,9 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 /**
- * Guard para rutas de COUNTER.
- * Permite el acceso si el usuario está autenticado y tiene rol COUNTER o ADMIN.
- * Si no está autenticado redirige a /login; si está autenticado pero sin el
- * rol necesario redirige al home raíz.
+ * counterGuard — permite acceso a usuarios con rol COUNTER o ADMIN.
+ * Sin autenticación → redirige a /login.
+ * Autenticado pero sin rol → redirige a /acceso-denegado.
  */
 export const counterGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
@@ -20,5 +19,5 @@ export const counterGuard: CanActivateFn = () => {
     return true;
   }
 
-  return router.createUrlTree(['/']);
+  return router.createUrlTree(['/acceso-denegado']);
 };

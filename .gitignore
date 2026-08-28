@@ -1,0 +1,24 @@
+# ── Maven compilados ─────────────────────────────────
+*/target/
+target/
+
+# ── IntelliJ ──────────────────────────────────────────
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# ── VS Code ───────────────────────────────────────────
+.vscode/
+
+# ── Angular ───────────────────────────────────────────
+frontend-web/node_modules/
+frontend-web/dist/
+frontend-web/.angular/cache/
+
+# ── Logs ──────────────────────────────────────────────
+*.log
+
+# ── OS ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

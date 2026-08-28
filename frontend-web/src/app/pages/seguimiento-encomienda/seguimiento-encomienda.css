@@ -1,17 +1,254 @@
-.estado-icono {
-  width: 56px;
-  height: 56px;
+/* ══════════════════════════════════════════════════════
+   SEGUIMIENTO — Hero oscuro + cards con tracker
+══════════════════════════════════════════════════════ */
+
+/* ── Hero ───────────────────────────────────────────── */
+.seguimiento-hero {
+  position: relative;
+  background: #1e1b4b;
+  overflow: hidden;
+  padding: 3.5rem 0 5.5rem;
+  border-radius: 0 0 2.5rem 2.5rem;
+}
+
+.seguimiento-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 70%, rgba(6,182,212,.2) 0%, transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(99,102,241,.18) 0%, transparent 40%);
+}
+
+.seguimiento-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.seguimiento-hero .container { position: relative; z-index: 1; }
+
+/* ── Search card flotante ───────────────────────────── */
+.search-card {
+  margin-top: -3rem;
+  position: relative;
+  z-index: 2;
+  border-radius: 1.25rem !important;
+  border: 1px solid rgba(0,0,0,.07) !important;
+  box-shadow: 0 12px 40px rgba(30,27,75,.12), 0 4px 12px rgba(0,0,0,.06) !important;
+  padding: 1.75rem !important;
+}
+
+.search-input {
+  border-radius: .75rem 0 0 .75rem !important;
+  border-right: none !important;
+  font-size: .95rem !important;
+  padding: .8rem 1.1rem !important;
+  border-color: var(--gray-200) !important;
+}
+
+.search-input:focus {
+  border-color: var(--p-400) !important;
+  z-index: 2;
+}
+
+.search-btn {
+  border-radius: 0 .75rem .75rem 0 !important;
+  padding: .8rem 1.4rem !important;
+  font-weight: 700 !important;
+  font-size: .9rem !important;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.search-btn:hover {
+  filter: brightness(1.08);
+  transform: none !important;
+}
+
+/* ── Result cards ───────────────────────────────────── */
+.result-card {
+  border-radius: 1.1rem !important;
+  border: 1px solid rgba(0,0,0,.07) !important;
+  transition: all .22s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.result-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(99,102,241,.2) !important;
+  box-shadow: 0 16px 48px rgba(30,27,75,.1), 0 4px 12px rgba(99,102,241,.07) !important;
+}
+
+/* Borde izquierdo por estado */
+.result-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Estado icon wraps */
+.estado-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f8f9fa;
-  border-radius: 12px;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  border: 1.5px solid transparent;
 }
 
-.card {
-  transition: box-shadow 0.2s;
+.estado-icon-wrap.registrada {
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  border-color: rgba(99,102,241,.15);
+}
+.estado-icon-wrap.en-transito {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-color: rgba(217,119,6,.2);
+}
+.estado-icon-wrap.entregada {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  border-color: rgba(5,150,105,.2);
+}
+.estado-icon-wrap.cancelada {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border-color: rgba(220,38,38,.2);
 }
 
-.card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+/* Info chips */
+.info-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 999px;
+  padding: .2rem .65rem;
+  font-size: .77rem;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+/* ── Progress tracker ───────────────────────────────── */
+.progress-track {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1.1rem;
+  padding-top: .8rem;
+  border-top: 1px solid var(--gray-100);
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.progress-step-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .72rem;
+  font-weight: 800;
+  border: 2px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-400);
+  transition: all .3s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.progress-step.active .progress-step-dot {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-color: #4f46e5;
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(79,70,229,.15);
+}
+
+.progress-step.done .progress-step-dot {
+  background: linear-gradient(135deg, #059669, #10b981);
+  border-color: #059669;
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(5,150,105,.12);
+}
+
+.progress-step-label {
+  font-size: .68rem;
+  color: var(--gray-400);
+  margin-top: .4rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.progress-step.done  .progress-step-label { color: #059669; }
+.progress-step.active .progress-step-label {
+  color: var(--p-500);
+  font-weight: 700;
+}
+
+.progress-line {
+  flex: 1;
+  height: 2px;
+  background: var(--gray-200);
+  margin-top: .875rem;
+  border-radius: 999px;
+  transition: background .4s;
+}
+
+.progress-line.done {
+  background: linear-gradient(90deg, #059669, #10b981);
+}
+
+/* ── Empty state ────────────────────────────────────── */
+.empty-state {
+  background: var(--gray-50);
+  border-radius: 1.25rem;
+  border: 2px dashed var(--gray-200);
+  padding: 3.5rem 2rem;
+  text-align: center;
+}
+
+.empty-state h5 {
+  font-weight: 700;
+  color: var(--gray-700);
+  letter-spacing: -.02em;
+}
+
+/* ── Animación camión SVG ───────────────────────────── */
+.truck-svg {
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,.3));
+  animation: truckRide 3s ease-in-out infinite;
+}
+
+@keyframes truckRide {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%       { transform: translateY(-5px) rotate(.4deg); }
+  75%       { transform: translateY(-2px) rotate(-.2deg); }
+}
+
+.pkg-bounce {
+  animation: pkgBounce 3s ease-in-out infinite;
+}
+
+@keyframes pkgBounce {
+  0%, 100% { transform: translateY(0); }
+  25%       { transform: translateY(-7px); }
+  75%       { transform: translateY(-3px); }
 }
